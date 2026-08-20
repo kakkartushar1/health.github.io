@@ -223,6 +223,64 @@ describe('Lower_Body.html', () => {
     });
   });
 
+  describe('updated exercise-photo sources (this PR)', () => {
+    // Regression / negative test: this PR swaps out four previously broken
+    // or unverified third-party image URLs for stable, verified references.
+    // Pin down the exact new URLs and make sure the old broken ones are
+    // fully gone, so a future revert doesn't silently reintroduce them.
+    test('glute bridges warm-up image points to the verified free-exercise-db reference', () => {
+      const bridgeCard = Array.from(document.querySelectorAll('#warmup .warm-card')).find(
+        (card) => card.querySelector('h3').textContent.trim() === 'Glute bridges'
+      );
+      expect(bridgeCard).toBeDefined();
+      const img = bridgeCard.querySelector('img');
+      expect(img.getAttribute('src')).toBe(
+        'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Glute_Bridge/0.jpg'
+      );
+    });
+
+    test('Romanian Deadlift photo points to the verified Wikimedia Commons reference', () => {
+      const article = Array.from(document.querySelectorAll('#workout article.card')).find(
+        (a) => a.querySelector('h2').textContent.trim() === 'Romanian Deadlift'
+      );
+      expect(article).toBeDefined();
+      const img = article.querySelector('.photo img');
+      expect(img.getAttribute('src')).toBe(
+        'https://commons.wikimedia.org/wiki/Special:Redirect/file/Romanian-deadlift-1.png'
+      );
+    });
+
+    test('Leg Extension photo points to the verified free-exercise-db reference', () => {
+      const article = Array.from(document.querySelectorAll('#workout article.card')).find(
+        (a) => a.querySelector('h2').textContent.trim() === 'Leg Extension'
+      );
+      expect(article).toBeDefined();
+      const img = article.querySelector('.photo img');
+      expect(img.getAttribute('src')).toBe(
+        'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leg_Extensions/0.jpg'
+      );
+    });
+
+    test('butterfly stretch cooldown image points to the verified free-exercise-db reference', () => {
+      const cards = Array.from(document.querySelectorAll('#cooldown .cool-card'));
+      const butterflyCard = cards.find((card) =>
+        card.querySelector('h3').textContent.trim().startsWith('Butterfly stretch')
+      );
+      expect(butterflyCard).toBeDefined();
+      const img = butterflyCard.querySelector('img.exercise-photo');
+      expect(img.getAttribute('src')).toBe(
+        'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Butterfly/0.jpg'
+      );
+    });
+
+    test('none of the previously broken/unverified image URLs remain in the document', () => {
+      expect(rawHtml).not.toContain('orthopelvicpt.com');
+      expect(rawHtml).not.toContain('stage.bodybuildingmealplan.com');
+      expect(rawHtml).not.toContain('cdn-images-1.readmedium.com');
+      expect(rawHtml).not.toContain('ghspineandlasercentre.com');
+    });
+  });
+
   describe('image count sanity check', () => {
     test('total image count matches warm-up + exercises + cooldown images', () => {
       // 6 warm-up + 6 exercises + 6 cooldown photos + 1 cooldown gif = 19

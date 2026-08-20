@@ -242,6 +242,26 @@ describe('upper_body_push.html', () => {
     });
   });
 
+  describe('warm-up tip text (documents a current content mismatch)', () => {
+    // Regression / negative test: the "Warm-up visual check" tip (carried
+    // over verbatim from the combined Upper_Body.html page) claims five
+    // movement references are shown below, but this split page only renders
+    // two warm-up exercise cards (Wall Slides and Scapular Push-ups). This
+    // pins the *current* mismatch so a future fix (or further regression)
+    // is caught explicitly.
+    test('tip text lists five movements while only two warm-up cards are rendered', () => {
+      const tip = document.querySelector('.tip');
+      expect(tip).not.toBeNull();
+      expect(tip.textContent).toMatch(/5 movement references/);
+
+      const warmupHeading = Array.from(document.querySelectorAll('h2')).find((h) =>
+        h.textContent.startsWith('2. Warm-up')
+      );
+      const warmupCards = warmupHeading.closest('section').querySelectorAll('.exercise');
+      expect(warmupCards.length).toBe(2);
+    });
+  });
+
   describe('scheduling guidance', () => {
     test('recommends spacing Pull and Push sessions 2-3 days apart', () => {
       const schedulingHeading = Array.from(document.querySelectorAll('h2')).find((h) =>

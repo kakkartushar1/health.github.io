@@ -202,6 +202,30 @@ describe('Upper_Body.html', () => {
     });
   });
 
+  describe('warm-up tip text (documents a current content mismatch)', () => {
+    // Regression / negative test: the "Warm-up visual check" tip claims five
+    // movement references are shown below (Arm Circles, Shoulder-Blade
+    // Squeezes, Wall Slides, Scapular Push-ups, Light Lat Pulldown), but the
+    // warm-up section only renders two exercise cards (Wall Slides and
+    // Scapular Push-ups). This pins the *current* mismatch so a future fix
+    // (or further regression) to either the tip text or the card count is
+    // caught explicitly.
+    test('tip text lists five movements while only two warm-up cards are rendered', () => {
+      const tip = document.querySelector('.tip');
+      expect(tip).not.toBeNull();
+      expect(tip.textContent).toMatch(/5 movement references/);
+      expect(tip.textContent).toMatch(
+        /Arm Circles, Shoulder-Blade Squeezes, Wall Slides, Scapular Push-ups and Light Lat Pulldown/
+      );
+
+      const warmupHeading = Array.from(document.querySelectorAll('h2')).find((h) =>
+        h.textContent.startsWith('2. Warm-up')
+      );
+      const warmupCards = warmupHeading.closest('section').querySelectorAll('.exercise');
+      expect(warmupCards.length).toBe(2);
+    });
+  });
+
   describe('overall image inventory', () => {
     test('embeds exactly fifteen images, all as base64 data URIs (no external image URLs)', () => {
       const images = document.querySelectorAll('img');
