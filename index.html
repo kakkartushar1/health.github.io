@@ -1,0 +1,364 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Gym workout plans including upper body and lower body workouts."
+    >
+
+    <meta name="theme-color" content="#111827">
+
+    <title>My Gym Workouts</title>
+
+    <style>
+        :root {
+            --bg: #f4f6f8;
+            --card: #ffffff;
+            --text: #17202a;
+            --muted: #5f6b76;
+            --border: #dce2e8;
+            --accent: #1769d1;
+            --accent-hover: #0f55ad;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family:
+                system-ui,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                Arial,
+                sans-serif;
+            line-height: 1.5;
+        }
+
+        /* Accessibility */
+        .skip-link {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+            padding: 10px 14px;
+            background: #ffffff;
+            color: #111827;
+            border: 3px solid #111827;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            transform: translateY(-150%);
+        }
+
+        .skip-link:focus {
+            transform: translateY(0);
+        }
+
+        :focus-visible {
+            outline: 3px solid #005fcc;
+            outline-offset: 3px;
+        }
+
+        header {
+            background: #111827;
+            color: #ffffff;
+            padding: 32px 18px;
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: clamp(28px, 6vw, 42px);
+            line-height: 1.15;
+        }
+
+        header p {
+            margin: 8px 0 0;
+            color: #d1d5db;
+            font-size: 16px;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 24px 16px 50px;
+        }
+
+        .intro {
+            margin-bottom: 24px;
+        }
+
+        .intro h2 {
+            margin: 0 0 6px;
+            font-size: 24px;
+        }
+
+        .intro p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .workout-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .workout-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 20px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .workout-icon {
+            width: 52px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #edf4ff;
+            border-radius: 14px;
+            font-size: 26px;
+            margin-bottom: 14px;
+        }
+
+        .workout-card h3 {
+            margin: 0 0 6px;
+            font-size: 22px;
+        }
+
+        .workout-card p {
+            margin: 0 0 16px;
+            color: var(--muted);
+        }
+
+        .workout-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-bottom: 18px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 9px;
+            border-radius: 999px;
+            background: #f0f2f5;
+            color: #374151;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .workout-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            min-height: 46px;
+            padding: 10px 14px;
+            background: var(--accent);
+            color: #ffffff;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: background 0.15s ease;
+        }
+
+        .workout-button:hover {
+            background: var(--accent-hover);
+        }
+
+        .coming-soon {
+            opacity: 0.7;
+        }
+
+        footer {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 16px 30px;
+            color: var(--muted);
+            font-size: 13px;
+            text-align: center;
+        }
+
+        @media (max-width: 650px) {
+            header {
+                padding: 26px 15px;
+            }
+
+            main {
+                padding: 20px 12px 40px;
+            }
+
+            .workout-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .workout-card {
+                padding: 17px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                transition: none !important;
+                animation: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<a class="skip-link" href="#main-content">
+    Skip to main content
+</a>
+
+<header>
+    <div class="header-content">
+        <h1>My Gym Workouts</h1>
+        <p>Quick access to your workout plans</p>
+    </div>
+</header>
+
+<main id="main-content" tabindex="-1">
+
+    <section class="intro" aria-labelledby="workout-heading">
+        <h2 id="workout-heading">Workout Plans</h2>
+        <p>
+            Select your workout below for the complete exercise instructions,
+            images, warm-up and stretching guidance.
+        </p>
+    </section>
+
+    <section
+        class="workout-grid"
+        aria-label="Available workout plans"
+    >
+
+        <!-- UPPER BODY -->
+        <article class="workout-card">
+
+            <div class="workout-icon" aria-hidden="true">
+                💪
+            </div>
+
+            <h3>Upper Body</h3>
+
+            <p>
+                Complete upper-body workout with exercise instructions,
+                form references, warm-up and cooldown.
+            </p>
+
+            <div class="workout-meta">
+                <span class="badge">Upper Body</span>
+                <span class="badge">Gym</span>
+            </div>
+
+            <a
+                class="workout-button"
+                href="Upper_Body.html"
+                aria-label="Open Upper Body workout"
+            >
+                Open Upper Body Workout
+            </a>
+
+        </article>
+
+
+        <!-- LOWER BODY -->
+        <article class="workout-card">
+
+            <div class="workout-icon" aria-hidden="true">
+                🦵
+            </div>
+
+            <h3>Lower Body</h3>
+
+            <p>
+                Friday lower-body workout with warm-up, strength exercises,
+                cardio and cooldown stretches.
+            </p>
+
+            <div class="workout-meta">
+                <span class="badge">Friday</span>
+                <span class="badge">Lower Body</span>
+                <span class="badge">Gym</span>
+            </div>
+
+            <a
+                class="workout-button"
+                href="Lower-Body.html"
+                aria-label="Open Friday Lower Body workout"
+            >
+                Open Lower Body Workout
+            </a>
+
+        </article>
+
+
+        <!-- FUTURE WORKOUT -->
+        <article class="workout-card coming-soon">
+
+            <div class="workout-icon" aria-hidden="true">
+                📋
+            </div>
+
+            <h3>Future Workout</h3>
+
+            <p>
+                Add another workout here whenever you create one.
+            </p>
+
+            <div class="workout-meta">
+                <span class="badge">Coming Soon</span>
+            </div>
+
+            <span
+                class="workout-button"
+                aria-disabled="true"
+            >
+                Coming Soon
+            </span>
+
+        </article>
+
+    </section>
+
+</main>
+
+<footer>
+    <p>
+        Personal gym workout library
+    </p>
+</footer>
+
+</body>
+</html>
+```
