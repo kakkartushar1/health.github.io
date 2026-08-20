@@ -215,6 +215,73 @@ describe('Lower_Body.html', () => {
     });
   });
 
+  // This PR replaces four previously unverified/unreliable image sources
+  // (a third-party PT clinic upload, a staging-domain mirror, a readmedium
+  // CDN thumbnail, and another PT clinic upload) with stable references
+  // hosted on the yuhonas/free-exercise-db GitHub repo and Wikimedia
+  // Commons. These tests pin the *new* URLs and guard against the old
+  // broken ones silently reappearing.
+  describe('updated exercise-form image sources', () => {
+    test('the "Glute bridges" warm-up card uses the free-exercise-db reference image', () => {
+      const warmupCards = Array.from(document.querySelectorAll('#warmup .warm-card'));
+      const glutesCard = warmupCards.find(
+        (card) => card.querySelector('h3').textContent.trim() === 'Glute bridges'
+      );
+      expect(glutesCard).toBeDefined();
+
+      const img = glutesCard.querySelector('img');
+      expect(img).not.toBeNull();
+      expect(img.getAttribute('src')).toBe(
+        'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Glute_Bridge/0.jpg'
+      );
+      expect(img.getAttribute('alt')).toBe('Glute bridges exercise form reference');
+    });
+
+    test('the "Romanian Deadlift" exercise photo points to the Wikimedia Commons reference', () => {
+      const articles = Array.from(document.querySelectorAll('#workout article.card'));
+      const rdlCard = articles.find((a) => a.querySelector('h2').textContent.trim() === 'Romanian Deadlift');
+      expect(rdlCard).toBeDefined();
+
+      const img = rdlCard.querySelector('.photo img');
+      expect(img.getAttribute('src')).toBe(
+        'https://commons.wikimedia.org/wiki/Special:Redirect/file/Romanian-deadlift-1.png'
+      );
+    });
+
+    test('the "Leg Extension" exercise photo points to the free-exercise-db reference image', () => {
+      const articles = Array.from(document.querySelectorAll('#workout article.card'));
+      const legExtCard = articles.find((a) => a.querySelector('h2').textContent.trim() === 'Leg Extension');
+      expect(legExtCard).toBeDefined();
+
+      const img = legExtCard.querySelector('.photo img');
+      expect(img.getAttribute('src')).toBe(
+        'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leg_Extensions/0.jpg'
+      );
+    });
+
+    test('the "Butterfly stretch" cooldown photo points to the free-exercise-db reference image', () => {
+      const coolCards = Array.from(document.querySelectorAll('#cooldown .cool-card'));
+      const butterflyCard = coolCards.find(
+        (card) => card.querySelector('h3').textContent.trim() === 'Butterfly stretch'
+      );
+      expect(butterflyCard).toBeDefined();
+
+      const img = butterflyCard.querySelector('img.exercise-photo');
+      expect(img.getAttribute('src')).toBe(
+        'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Butterfly/0.jpg'
+      );
+    });
+
+    // Regression / negative test: the previous, less reliable image hosts
+    // should no longer be referenced anywhere in the document.
+    test('no longer references the old unverified image hosts', () => {
+      expect(rawHtml).not.toMatch(/orthopelvicpt\.com/);
+      expect(rawHtml).not.toMatch(/stage\.bodybuildingmealplan\.com/);
+      expect(rawHtml).not.toMatch(/cdn-images-1\.readmedium\.com/);
+      expect(rawHtml).not.toMatch(/ghspineandlasercentre\.com/);
+    });
+  });
+
   describe('footer disclosures', () => {
     test('mentions image verification and the technical limitation notice', () => {
       const footer = document.querySelector('footer');

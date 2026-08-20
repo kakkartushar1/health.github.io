@@ -211,5 +211,18 @@ describe('Upper_Body.html', () => {
         expect(src.startsWith('data:image/')).toBe(true);
       });
     });
+
+    // Boundary/regression check: a broken embed step could leave behind a
+    // technically well-formed but empty/near-empty data URI (e.g. a 1x1
+    // placeholder). Requiring a substantial base64 payload guards against
+    // that without needing to decode and inspect actual pixel data.
+    test('every embedded base64 image payload is substantial (not an empty/placeholder stub)', () => {
+      const images = document.querySelectorAll('img');
+      images.forEach((img) => {
+        const src = img.getAttribute('src');
+        const base64Payload = src.slice(src.indexOf('base64,') + 'base64,'.length);
+        expect(base64Payload.length).toBeGreaterThan(1000);
+      });
+    });
   });
 });
