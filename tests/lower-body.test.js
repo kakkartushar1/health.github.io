@@ -60,7 +60,7 @@ describe('Lower_Body.html', () => {
       { href: '#warmup', label: 'Warm-up' },
       { href: '#workout', label: 'Workout' },
       { href: '#cooldown', label: 'Cooldown' },
-      { href: '#notes', label: 'Progress' },
+      { href: '#progress', label: 'Progress' },
     ];
 
     test('renders exactly five nav links with the expected labels/targets', () => {
@@ -93,7 +93,7 @@ describe('Lower_Body.html', () => {
         '#warmup': true,
         '#workout': true,
         '#cooldown': true,
-        '#notes': false,
+        '#progress': true,
       });
     });
   });
@@ -109,12 +109,12 @@ describe('Lower_Body.html', () => {
 
   describe('warm-up section', () => {
     test('renders seven warm-up drills', () => {
-      const warmItems = document.querySelectorAll('#warmup .warm');
+      const warmItems = document.querySelectorAll('#warmup .warm-card');
       expect(warmItems.length).toBe(7);
     });
 
     test('every warm-up image (except the cardio-only entry) has alt text and lazy loading', () => {
-      const images = document.querySelectorAll('#warmup .warm img');
+      const images = document.querySelectorAll('#warmup .warm-card img');
       // 6 of the 7 warm-up entries include a reference image (cardio does not).
       expect(images.length).toBe(6);
       images.forEach((img) => {
@@ -145,7 +145,7 @@ describe('Lower_Body.html', () => {
         expect(article.querySelector('h2').textContent.trim().length).toBeGreaterThan(0);
         expect(article.querySelector('.weight')).not.toBeNull();
 
-        const videoLink = article.querySelector('a.btn');
+        const videoLink = article.querySelector('a.video-btn');
         expect(videoLink).not.toBeNull();
         expect(videoLink.getAttribute('href')).toMatch(/^https:\/\//);
         expect(videoLink.getAttribute('target')).toBe('_blank');
@@ -172,7 +172,7 @@ describe('Lower_Body.html', () => {
         'Squat',
         'Romanian Deadlift',
         'Leg Press',
-        'Leg Press Calf Raise',
+        'Smith Machine Calf Raises',
         'Leg Extension',
         'Stability Ball Hamstring Curl',
       ]);
@@ -259,7 +259,7 @@ describe('Lower_Body.html', () => {
       );
     });
 
-    test('the "Butterfly stretch" cooldown photo points to the free-exercise-db reference image', () => {
+    test('the "Butterfly stretch" cooldown photo points to the correct stretch reference image', () => {
       const coolCards = Array.from(document.querySelectorAll('#cooldown .cool-card'));
       const butterflyCard = coolCards.find(
         (card) => card.querySelector('h3').textContent.trim() === 'Butterfly stretch'
@@ -268,7 +268,7 @@ describe('Lower_Body.html', () => {
 
       const img = butterflyCard.querySelector('img.exercise-photo');
       expect(img.getAttribute('src')).toBe(
-        'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Butterfly/0.jpg'
+        'https://img.youtube.com/vi/UGEpQ1BRx-4/hqdefault.jpg'
       );
     });
 
@@ -309,7 +309,7 @@ describe('Lower_Body.html', () => {
     // This PR swaps out four previously-broken/unverified image sources for
     // new ones. Pin the exact expected src for each swapped image, and
     // assert the old, replaced URLs no longer appear anywhere in the file.
-    test('Glute bridges warm-up image points to the new free-exercise-db source', () => {
+    test('Glute bridges warm-up image points to the free-exercise-db source', () => {
       const warmCards = Array.from(document.querySelectorAll('#warmup .warm-card'));
       const glutesCard = warmCards.find(
         (card) => card.querySelector('h3')?.textContent.trim() === 'Glute bridges'
@@ -350,7 +350,7 @@ describe('Lower_Body.html', () => {
       );
     });
 
-    test('Butterfly stretch photo points to the new free-exercise-db source', () => {
+    test('Butterfly stretch photo points to the correct stretch reference image', () => {
       const cards = Array.from(document.querySelectorAll('#cooldown .cool-card'));
       const butterflyCard = cards.find(
         (card) => card.querySelector('h3')?.textContent.trim() === 'Butterfly stretch'
@@ -359,7 +359,7 @@ describe('Lower_Body.html', () => {
 
       const img = butterflyCard.querySelector('img.exercise-photo');
       expect(img.getAttribute('src')).toBe(
-        'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Butterfly/0.jpg'
+        'https://img.youtube.com/vi/UGEpQ1BRx-4/hqdefault.jpg'
       );
     });
 
