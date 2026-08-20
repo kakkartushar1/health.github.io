@@ -153,11 +153,14 @@ describe('index.html', () => {
       const headings = cards.map((card) => card.querySelector('h3').textContent.trim());
       expect(headings).toContain('Upper Body Full (pull + push) workout');
 
-      const hrefs = cards
-        .map((card) => card.querySelector('a.workout-button'))
-        .filter(Boolean)
-        .map((link) => link.getAttribute('href'));
-      expect(hrefs).toContain('Upper_Body.html');
+      const fullCard = cards.find(
+        (card) => card.querySelector('h3').textContent.trim() === 'Upper Body Full (pull + push) workout'
+      );
+      expect(fullCard).toBeDefined();
+
+      const link = fullCard.querySelector('a.workout-button');
+      expect(link).not.toBeNull();
+      expect(link.getAttribute('href')).toBe('Upper_Body.html');
     });
 
     test('Lower Body card renders its expected label, badges and link markup', () => {
