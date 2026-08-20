@@ -199,9 +199,8 @@ describe('index.html', () => {
 
     test('Upper Body Full card links to Upper_Body.html and the target file exists', () => {
       const fullCard = cards.find(
-        (card) =>
-          card.querySelector('h3').textContent.trim() ===
-          'Upper Body Full (pull + push) work out'
+        (card) => card.querySelector('h3').textContent.trim() === 'Upper Body Full (pull + push) workout'
+
       );
       expect(fullCard).toBeDefined();
       expect(fullCard.classList.contains('coming-soon')).toBe(false);
@@ -215,9 +214,7 @@ describe('index.html', () => {
       expect(link).not.toBeNull();
       expect(link.tagName).toBe('A');
       expect(link.getAttribute('href')).toBe('Upper_Body.html');
-      expect(link.getAttribute('aria-label')).toBe(
-        'Open Upper Body Full (pull + push) workout'
-      );
+      expect(link.getAttribute('aria-label')).toBe('Open Upper Body Full (pull + push) workout');
       expect(link.textContent.trim()).toBe('Open Full Upper Body');
 
       const target = path.join(ROOT_DIR, link.getAttribute('href'));
@@ -225,31 +222,44 @@ describe('index.html', () => {
     });
 
     // Regression / negative test: this PR replaces the "Future Workout"
-    // coming-soon placeholder card with the functional "Upper Body Full"
-    // card. Pin down that the old placeholder card, its heading and its
-    // disabled span are all gone, so a future revert wouldn't silently
-    // reintroduce the disabled placeholder alongside the new card.
-    test('does not render the old "Future Workout" coming-soon placeholder', () => {
+    // disabled/"Coming Soon" placeholder card with the functional Upper
+    // Body Full card above. Pin down that the old placeholder card, its
+    // "coming-soon" styling hook and its disabled <span> button are all
+    // gone, so a future revert wouldn't silently reintroduce a dead card.
+    test('does not render the old "Future Workout" / "Coming Soon" placeholder card', () => {
       const headings = cards.map((card) => card.querySelector('h3').textContent.trim());
       expect(headings).not.toContain('Future Workout');
 
-      const comingSoonCards = cards.filter((card) => card.classList.contains('coming-soon'));
-      expect(comingSoonCards.length).toBe(0);
+      expect(document.querySelector('.workout-grid .coming-soon')).toBeNull();
 
-      const disabledPlaceholders = document.querySelectorAll(
-        '.workout-grid .workout-button[aria-disabled="true"]'
+      const badgeTexts = cards.flatMap((card) =>
+        Array.from(card.querySelectorAll('.badge')).map((b) => b.textContent.trim())
       );
-      expect(disabledPlaceholders.length).toBe(0);
+      expect(badgeTexts).not.toContain('Coming Soon');
     });
 
     test('none of the workout-button anchors point to an empty or javascript: href', () => {
       cards.forEach((card) => {
         const link = card.querySelector('a.workout-button');
-        if (!link) return; // the "coming soon" card intentionally has no <a>
+        expect(link).not.toBeNull();
         const href = link.getAttribute('href');
         expect(href).toBeTruthy();
         expect(href.trim().toLowerCase()).not.toMatch(/^javascript:/);
       });
+    });
+
+    // Additional confidence check: every card should link to a distinct
+    // workout page. This guards against a copy/paste mistake (e.g. the new
+    // Upper Body Full card accidentally reusing the Pull or Push href)
+    // slipping through the individual per-card assertions above.
+    test('every workout card links to a unique target page', () => {
+      const hrefs = cards
+        .map((card) => card.querySelector('a.workout-button'))
+        .filter(Boolean)
+        .map((link) => link.getAttribute('href'));
+
+      expect(hrefs.length).toBe(cards.length);
+      expect(new Set(hrefs).size).toBe(hrefs.length);
     });
   });
 
