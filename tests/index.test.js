@@ -199,7 +199,8 @@ describe('index.html', () => {
 
     test('Upper Body Full card links to Upper_Body.html and the target file exists', () => {
       const fullCard = cards.find(
-        (card) => card.querySelector('h3').textContent.trim() === 'Upper Body Full (pull + push) work out'
+        (card) => card.querySelector('h3').textContent.trim() === 'Upper Body Full (pull + push) workout'
+
       );
       expect(fullCard).toBeDefined();
       expect(fullCard.classList.contains('coming-soon')).toBe(false);

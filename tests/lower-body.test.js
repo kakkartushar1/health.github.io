@@ -304,6 +304,81 @@ describe('Lower_Body.html', () => {
       });
     });
   });
+
+  describe('updated exercise-form image sources', () => {
+    // This PR swaps out four previously-broken/unverified image sources for
+    // new ones. Pin the exact expected src for each swapped image, and
+    // assert the old, replaced URLs no longer appear anywhere in the file.
+    test('Glute bridges warm-up image points to the new free-exercise-db source', () => {
+      const warmCards = Array.from(document.querySelectorAll('#warmup .warm-card'));
+      const glutesCard = warmCards.find(
+        (card) => card.querySelector('h3')?.textContent.trim() === 'Glute bridges'
+      );
+      expect(glutesCard).toBeDefined();
+
+      const img = glutesCard.querySelector('img');
+      expect(img).not.toBeNull();
+      expect(img.getAttribute('src')).toBe(
+        'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Glute_Bridge/0.jpg'
+      );
+      expect(img.getAttribute('alt')).toBe('Glute bridges exercise form reference');
+    });
+
+    test('Romanian Deadlift photo points to the new Wikimedia Commons source', () => {
+      const articles = Array.from(document.querySelectorAll('#workout article.card'));
+      const rdlArticle = articles.find(
+        (a) => a.querySelector('h2').textContent.trim() === 'Romanian Deadlift'
+      );
+      expect(rdlArticle).toBeDefined();
+
+      const img = rdlArticle.querySelector('.photo img');
+      expect(img.getAttribute('src')).toBe(
+        'https://commons.wikimedia.org/wiki/Special:Redirect/file/Romanian-deadlift-1.png'
+      );
+    });
+
+    test('Leg Extension photo points to the new free-exercise-db source', () => {
+      const articles = Array.from(document.querySelectorAll('#workout article.card'));
+      const legExtArticle = articles.find(
+        (a) => a.querySelector('h2').textContent.trim() === 'Leg Extension'
+      );
+      expect(legExtArticle).toBeDefined();
+
+      const img = legExtArticle.querySelector('.photo img');
+      expect(img.getAttribute('src')).toBe(
+        'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Leg_Extensions/0.jpg'
+      );
+    });
+
+    test('Butterfly stretch photo points to the new free-exercise-db source', () => {
+      const cards = Array.from(document.querySelectorAll('#cooldown .cool-card'));
+      const butterflyCard = cards.find(
+        (card) => card.querySelector('h3')?.textContent.trim() === 'Butterfly stretch'
+      );
+      expect(butterflyCard).toBeDefined();
+
+      const img = butterflyCard.querySelector('img.exercise-photo');
+      expect(img.getAttribute('src')).toBe(
+        'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Butterfly/0.jpg'
+      );
+    });
+
+    // Regression / negative test: the previous, replaced image URLs must
+    // not linger anywhere in the document (e.g. from a partial revert or a
+    // copy-paste mistake reintroducing a stale source).
+    test('does not contain any of the old, replaced image URLs', () => {
+      const oldUrls = [
+        'orthopelvicpt.com/wp-content/uploads/2023/02/Common-Exercises-2.jpg',
+        'stage.bodybuildingmealplan.com/wp-content/uploads/Romanian-Deadlift-vs-Stiff-Leg-Deadlift-Start.jpg',
+        'cdn-images-1.readmedium.com/v2/resize:fit:800/1*Bc6f8E9cpeqs5lwYqdm11Q.png',
+        'ghspineandlasercentre.com/uploads/exercise-for-recovery-crop/VKpQI-8oghr-2wdoB-rsN6w-0yPGj.jpg',
+      ];
+
+      oldUrls.forEach((oldUrl) => {
+        expect(rawHtml).not.toContain(oldUrl);
+      });
+    });
+  });
 });
 
 describe('Lower_Body.html inline image-fallback script', () => {
