@@ -197,21 +197,49 @@ describe('index.html', () => {
       expect(fs.existsSync(target)).toBe(true);
     });
 
-    test('Future Workout card is rendered as a disabled placeholder', () => {
-      const futureCard = cards.find(
-        (card) => card.querySelector('h3').textContent.trim() === 'Future Workout'
+    test('Upper Body Full card links to Upper_Body.html and the target file exists', () => {
+      const fullCard = cards.find(
+        (card) =>
+          card.querySelector('h3').textContent.trim() ===
+          'Upper Body Full (pull + push) work out'
       );
-      expect(futureCard).toBeDefined();
-      expect(futureCard.classList.contains('coming-soon')).toBe(true);
+      expect(fullCard).toBeDefined();
+      expect(fullCard.classList.contains('coming-soon')).toBe(false);
 
-      const placeholder = futureCard.querySelector('.workout-button');
-      expect(placeholder).not.toBeNull();
-      expect(placeholder.tagName).toBe('SPAN');
-      expect(placeholder.getAttribute('aria-disabled')).toBe('true');
-      expect(placeholder.textContent.trim()).toBe('Coming Soon');
+      const badgeTexts = Array.from(fullCard.querySelectorAll('.badge')).map((b) =>
+        b.textContent.trim()
+      );
+      expect(badgeTexts).toEqual(['Pull', 'Push', 'Upper Body', 'Gym']);
 
-      // A disabled placeholder should not be an actual navigable link.
-      expect(placeholder.hasAttribute('href')).toBe(false);
+      const link = fullCard.querySelector('a.workout-button');
+      expect(link).not.toBeNull();
+      expect(link.tagName).toBe('A');
+      expect(link.getAttribute('href')).toBe('Upper_Body.html');
+      expect(link.getAttribute('aria-label')).toBe(
+        'Open Upper Body Full (pull + push) workout'
+      );
+      expect(link.textContent.trim()).toBe('Open Full Upper Body');
+
+      const target = path.join(ROOT_DIR, link.getAttribute('href'));
+      expect(fs.existsSync(target)).toBe(true);
+    });
+
+    // Regression / negative test: this PR replaces the "Future Workout"
+    // coming-soon placeholder card with the functional "Upper Body Full"
+    // card. Pin down that the old placeholder card, its heading and its
+    // disabled span are all gone, so a future revert wouldn't silently
+    // reintroduce the disabled placeholder alongside the new card.
+    test('does not render the old "Future Workout" coming-soon placeholder', () => {
+      const headings = cards.map((card) => card.querySelector('h3').textContent.trim());
+      expect(headings).not.toContain('Future Workout');
+
+      const comingSoonCards = cards.filter((card) => card.classList.contains('coming-soon'));
+      expect(comingSoonCards.length).toBe(0);
+
+      const disabledPlaceholders = document.querySelectorAll(
+        '.workout-grid .workout-button[aria-disabled="true"]'
+      );
+      expect(disabledPlaceholders.length).toBe(0);
     });
 
     test('none of the workout-button anchors point to an empty or javascript: href', () => {
