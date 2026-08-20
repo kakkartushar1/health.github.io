@@ -94,8 +94,8 @@ describe('index.html', () => {
       cards = Array.from(document.querySelectorAll('.workout-grid .workout-card'));
     });
 
-    test('renders exactly three workout cards', () => {
-      expect(cards.length).toBe(3);
+    test('renders exactly four workout cards', () => {
+      expect(cards.length).toBe(4);
     });
 
     test('each card has an icon and at least one badge', () => {
@@ -105,19 +105,62 @@ describe('index.html', () => {
       });
     });
 
-    test('Upper Body card links to Upper_Body.html and the target file exists', () => {
-      const upperCard = cards.find(
-        (card) => card.querySelector('h3').textContent.trim() === 'Upper Body'
+    test('Upper Body Pull card links to upper_body_pull.html and the target file exists', () => {
+      const pullCard = cards.find(
+        (card) => card.querySelector('h3').textContent.trim() === 'Upper Body Pull'
       );
-      expect(upperCard).toBeDefined();
+      expect(pullCard).toBeDefined();
 
-      const link = upperCard.querySelector('a.workout-button');
+      const badgeTexts = Array.from(pullCard.querySelectorAll('.badge')).map((b) =>
+        b.textContent.trim()
+      );
+      expect(badgeTexts).toEqual(['Pull', 'Upper Body', 'Gym']);
+
+      const link = pullCard.querySelector('a.workout-button');
       expect(link).not.toBeNull();
-      expect(link.getAttribute('href')).toBe('Upper_Body.html');
-      expect(link.getAttribute('aria-label')).toBe('Open Upper Body workout');
+      expect(link.getAttribute('href')).toBe('upper_body_pull.html');
+      expect(link.getAttribute('aria-label')).toBe('Open Upper Body Pull workout');
+      expect(link.textContent.trim()).toBe('Open Pull Workout');
 
       const target = path.join(ROOT_DIR, link.getAttribute('href'));
       expect(fs.existsSync(target)).toBe(true);
+    });
+
+    test('Upper Body Push card links to upper_body_push.html and the target file exists', () => {
+      const pushCard = cards.find(
+        (card) => card.querySelector('h3').textContent.trim() === 'Upper Body Push'
+      );
+      expect(pushCard).toBeDefined();
+
+      const badgeTexts = Array.from(pushCard.querySelectorAll('.badge')).map((b) =>
+        b.textContent.trim()
+      );
+      expect(badgeTexts).toEqual(['Push', 'Upper Body', 'Gym']);
+
+      const link = pushCard.querySelector('a.workout-button');
+      expect(link).not.toBeNull();
+      expect(link.getAttribute('href')).toBe('upper_body_push.html');
+      expect(link.getAttribute('aria-label')).toBe('Open Upper Body Push workout');
+      expect(link.textContent.trim()).toBe('Open Push Workout');
+
+      const target = path.join(ROOT_DIR, link.getAttribute('href'));
+      expect(fs.existsSync(target)).toBe(true);
+    });
+
+    // Regression / negative test: this PR replaces the single "Upper Body"
+    // card (which linked to Upper_Body.html) with separate Pull and Push
+    // cards. Pin down that the old combined card/heading and its link are
+    // both gone from the grid, so a future revert wouldn't silently
+    // reintroduce a duplicate/conflicting card.
+    test('does not render a standalone "Upper Body" card or link to Upper_Body.html', () => {
+      const headings = cards.map((card) => card.querySelector('h3').textContent.trim());
+      expect(headings).not.toContain('Upper Body');
+
+      const hrefs = cards
+        .map((card) => card.querySelector('a.workout-button'))
+        .filter(Boolean)
+        .map((link) => link.getAttribute('href'));
+      expect(hrefs).not.toContain('Upper_Body.html');
     });
 
     test('Lower Body card renders its expected label, badges and link markup', () => {
