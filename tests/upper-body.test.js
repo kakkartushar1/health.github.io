@@ -46,24 +46,24 @@ describe('Upper_Body.html', () => {
   });
 
   describe('warm-up exercises', () => {
-    test('renders exactly two warm-up exercise cards', () => {
-      const cards = document.querySelectorAll('section.card:nth-of-type(3) .exercise');
-      // Fall back to a name-based lookup in case section ordering changes,
-      // keeping the assertion robust to unrelated markup tweaks.
-      const names = Array.from(document.querySelectorAll('h2')).find((h) =>
-        h.textContent.includes('Warm-up')
-      );
-      expect(names).not.toBeUndefined();
-
+    test('renders exactly five warm-up exercise cards in the correct order', () => {
       const warmupHeading = Array.from(document.querySelectorAll('h2')).find((h) =>
         h.textContent.startsWith('2. Warm-up')
       );
+      expect(warmupHeading).not.toBeUndefined();
+
       const warmupSection = warmupHeading.closest('section');
       const warmupCards = warmupSection.querySelectorAll('.exercise');
-      expect(warmupCards.length).toBe(2);
+      expect(warmupCards.length).toBe(5);
 
       const titles = Array.from(warmupCards).map((c) => c.querySelector('h3').textContent.trim());
-      expect(titles).toEqual(['Wall Slides', 'Scapular Push-ups']);
+      expect(titles).toEqual([
+        'Arm Circles',
+        'Shoulder-Blade Squeezes',
+        'Wall Slides',
+        'Scapular Push-ups',
+        'Light Lat Pulldown',
+      ]);
     });
   });
 
@@ -177,9 +177,9 @@ describe('Upper_Body.html', () => {
   });
 
   describe('exercise name uniqueness (data integrity)', () => {
-    test('all fifteen exercise names across the page are unique', () => {
+    test('all eighteen exercise names across the page are unique', () => {
       const names = Array.from(document.querySelectorAll('h3')).map((h) => h.textContent.trim());
-      expect(names.length).toBe(15);
+      expect(names.length).toBe(18);
       expect(new Set(names).size).toBe(names.length);
     });
   });
@@ -203,13 +203,14 @@ describe('Upper_Body.html', () => {
   });
 
   describe('overall image inventory', () => {
-    test('embeds exactly fifteen images, all as base64 data URIs (no external image URLs)', () => {
+    test('embeds eighteen images total (fifteen base64 + three external warm-up references)', () => {
       const images = document.querySelectorAll('img');
-      expect(images.length).toBe(15);
-      images.forEach((img) => {
-        const src = img.getAttribute('src');
-        expect(src.startsWith('data:image/')).toBe(true);
-      });
+      expect(images.length).toBe(18);
+
+      const base64Images = Array.from(images).filter((img) =>
+        img.getAttribute('src').startsWith('data:image/')
+      );
+      expect(base64Images.length).toBe(15);
     });
 
     // Boundary/regression check: a broken embed step could leave behind a
@@ -217,7 +218,9 @@ describe('Upper_Body.html', () => {
     // placeholder). Requiring a substantial base64 payload guards against
     // that without needing to decode and inspect actual pixel data.
     test('every embedded base64 image payload is substantial (not an empty/placeholder stub)', () => {
-      const images = document.querySelectorAll('img');
+      const images = Array.from(document.querySelectorAll('img')).filter((img) =>
+        img.getAttribute('src').startsWith('data:image/')
+      );
       images.forEach((img) => {
         const src = img.getAttribute('src');
         const base64Payload = src.slice(src.indexOf('base64,') + 'base64,'.length);

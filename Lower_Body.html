@@ -25,16 +25,19 @@ h2{font-size:22px;margin:10px 0 5px} h3{margin:13px 0 6px;font-size:17px}
 p{margin:7px 0} ol{padding-left:22px} li{margin:7px 0}
 .why{color:#34404c} .weight{background:#fff8e6;border:1px solid #f0d58a;padding:9px;border-radius:10px;margin:10px 0}
 .media-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
-.exercise-photo,.exercise-gif{width:100%;height:260px;object-fit:contain;background:#f7f8fa;border-radius:12px;border:1px solid var(--line)}
+.exercise-photo,.exercise-gif{width:100%;height:auto;max-height:260px;object-fit:contain;background:#f7f8fa;border-radius:12px;border:1px solid var(--line)}
 .media-label{font-size:11px;color:var(--muted);margin:4px 2px}
 .no-gif{height:260px;border:1px dashed #b9c1ca;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;color:var(--muted);padding:15px;background:#fafafa}
 .no-gif span{font-weight:800;font-size:12px}
 .actions{margin:10px 0} .video-btn{display:inline-block;background:#111827;color:#fff;text-decoration:none;padding:9px 12px;border-radius:9px;font-weight:700;font-size:13px}
 .cues{background:#eef7f0;border-left:4px solid #31915b;padding:9px;border-radius:6px;margin:10px 0}
 .mistake{color:#7a2d2d} .stop{background:#fff0f0;border:1px solid #efb5b5;padding:9px;border-radius:8px;color:#7a2020}
-.warm-card,.cool-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px;margin:10px 0;display:grid;grid-template-columns:180px 1fr;gap:12px}
-.warm-media img,.cool-card img{width:100%;height:180px;object-fit:contain;border-radius:10px;background:#f7f8fa}
+.warm-card,.cool-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px;margin:10px 0;display:grid;grid-template-columns:180px 1fr;gap:12px;align-items:start}
+.warm-card>div:only-child,.cool-card>div:only-child{grid-column:1/-1}
+.cool-card img,.warm-card img{max-width:100%;height:auto;max-height:180px;object-fit:contain}
+.warm-media img{width:100%;height:180px;object-fit:contain;border-radius:10px;background:#f7f8fa}
 .warm-media .exercise-gif,.cool-card .exercise-gif{height:140px;margin-top:6px}
+.cool-card>div:first-child{overflow:hidden}
 .section-title{margin:22px 2px 8px;font-size:23px}
 .table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden}
 .table th,.table td{padding:9px;border-bottom:1px solid var(--line);text-align:left;font-size:13px}
@@ -54,7 +57,7 @@ summary{font-weight:800;cursor:pointer}
 .skip-link:focus{transform:translateY(0)}
 :focus-visible{outline:3px solid #005fcc;outline-offset:3px}
 main:focus{outline:none}
-.photo img,.warm img,.cool img{width:100%;height:220px;max-height:240px;object-fit:contain;background:#f8fafc;border:1px solid var(--line);border-radius:12px}
+.photo img,.warm img,.cool img{width:100%;height:220px;max-height:240px;object-fit:contain;background:#f8fafc;border:1px solid var(--line);border-radius:12px;display:block}
 .image-fallback{background:#fff7df;border:1px solid #b7791f;border-radius:9px;padding:10px;color:#4a2c00}
 table caption{text-align:left;font-weight:800;padding:10px 0 7px}
 @media (prefers-reduced-motion: reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
@@ -80,7 +83,7 @@ table caption{text-align:left;font-weight:800;padding:10px 0 7px}
 <p><strong>Rule:</strong> Start lighter than you think. Keep about 2 good reps in reserve. Technique decides the load.</p>
 </section>
 
-<section id="warmup" aria-labelledby="warmup-title"><h2 id="warmup-title" class="section">Warm-up</h2><p>Prepare the joints and movement patterns without tiring the legs.</p><div class="warm-card"><div><span class="tag">WARM-UP</span><h3>General cardio</h3><b>5 min</b><p>Brisk treadmill walk, easy cycling or cross-trainer.</p><p><b>Feel:</b> Warm and slightly elevated breathing.</p><p class="mistake"><b>Common mistake:</b> Do not fatigue the legs.</p></div></div><div class="warm-card"><div><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bodyweight_Squat/0.jpg" alt="Bodyweight squat exercise form reference" loading="lazy"></div><div><span class="tag">WARM-UP</span><h3>Bodyweight squat</h3><b>10 reps</b><p>Feet shoulder-width. Sit down and back, knees follow toes, stand through mid-foot.</p><p><b>Feel:</b> Hips, knees and ankles moving freely.</p><p class="mistake"><b>Common mistake:</b> Do not chase depth before you are warm.</p></div></div><div class="warm-card"><div><img src="https://i.pinimg.com/originals/b4/a2/02/b4a2020403b4090b15b91acd78ddfd5c.png" alt="Walking lunges exercise form reference" loading="lazy"></div><div><span class="tag">WARM-UP</span><h3>Walking lunges</h3><b>10/leg</b><p>Step forward, lower under control, push through the front foot and continue walking.</p><p><b>Feel:</b> Light quad/glute work and hip mobility.</p><p class="mistake"><b>Common mistake:</b> Do not let the front knee collapse inward.</p></div></div><div class="warm-card"><div><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Glute_Bridge/0.jpg" alt="Glute bridges exercise form reference" loading="lazy"></div><div><span class="tag">WARM-UP</span><h3>Glute bridges</h3><b>12 reps</b><p>Feet under knees. Brace, lift hips, squeeze glutes without arching the back.</p><p><b>Feel:</b> Glutes contracting.</p><p class="mistake"><b>Common mistake:</b> Do not hyperextend the lower back.</p></div></div><div class="warm-card"><div><img src="https://happyhealthy.nl/wp-content/uploads/leg-swing.jpg" alt="Leg swings exercise form reference" loading="lazy"></div><div><span class="tag">WARM-UP</span><h3>Leg swings</h3><b>10 front/back + 10 side/side per leg</b><p>Hold support and swing through a comfortable range while keeping the torso quiet.</p><p><b>Feel:</b> Hip moving freely.</p><p class="mistake"><b>Common mistake:</b> Do not force the range.</p></div></div><div class="warm-card"><div><img src="https://img.youtube.com/vi/oU_oVMJL3-8/hqdefault.jpg" alt="Hip circles exercise form reference" loading="lazy"></div><div><span class="tag">WARM-UP</span><h3>Hip circles</h3><b>10 each direction</b><p>Stand near support. Lift one knee and make controlled circles from the hip, then reverse.</p><p><b>Feel:</b> Hip mobility and control.</p><p class="mistake"><b>Common mistake:</b> Do not use momentum or twist the torso.</p></div></div><div class="warm-card"><div><img src="https://www.barefootrehab.com/wp-content/uploads/2016/01/move-knee.jpg" alt="Knee-to-wall ankle mobility exercise form reference" loading="lazy"></div><div><span class="tag">WARM-UP</span><h3>Knee-to-wall ankle mobility</h3><b>10/side</b><p>Keep heel down and gently drive knee toward wall over the toes.</p><p><b>Feel:</b> Calf/ankle mobility.</p><p class="mistake"><b>Common mistake:</b> Do not let heel lift.</p></div></div>
+<section id="warmup" aria-labelledby="warmup-title"><h2 id="warmup-title" class="section">Warm-up</h2><p>Prepare the joints and movement patterns without tiring the legs.</p><div class="warm-card"><div><span class="tag">WARM-UP</span><h3>General cardio</h3><b>5 min</b><p>Brisk treadmill walk, easy cycling or cross-trainer.</p><p><b>Feel:</b> Warm and slightly elevated breathing.</p><p class="mistake"><b>Common mistake:</b> Do not fatigue the legs.</p></div></div><div class="warm-card"><div><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bodyweight_Squat/0.jpg" alt="Bodyweight squat exercise form reference" loading="lazy"></div><div><span class="tag">WARM-UP</span><h3>Bodyweight squat</h3><b>10 reps</b><p>Feet shoulder-width. Sit down and back, knees follow toes, stand through mid-foot.</p><p><b>Feel:</b> Hips, knees and ankles moving freely.</p><p class="mistake"><b>Common mistake:</b> Do not chase depth before you are warm.</p></div></div><div class="warm-card"><div><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bodyweight_Walking_Lunge/0.jpg" alt="Walking lunges exercise form reference" loading="lazy"></div><div><span class="tag">WARM-UP</span><h3>Walking lunges</h3><b>10/leg</b><p>Step forward, lower under control, push through the front foot and continue walking.</p><p><b>Feel:</b> Light quad/glute work and hip mobility.</p><p class="mistake"><b>Common mistake:</b> Do not let the front knee collapse inward.</p></div></div><div class="warm-card"><div><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Glute_Bridge/0.jpg" alt="Glute bridges exercise form reference" loading="lazy"></div><div><span class="tag">WARM-UP</span><h3>Glute bridges</h3><b>12 reps</b><p>Feet under knees. Brace, lift hips, squeeze glutes without arching the back.</p><p><b>Feel:</b> Glutes contracting.</p><p class="mistake"><b>Common mistake:</b> Do not hyperextend the lower back.</p></div></div><div class="warm-card"><div><img src="https://happyhealthy.nl/wp-content/uploads/leg-swing.jpg" alt="Leg swings exercise form reference" loading="lazy"></div><div><span class="tag">WARM-UP</span><h3>Leg swings</h3><b>10 front/back + 10 side/side per leg</b><p>Hold support and swing through a comfortable range while keeping the torso quiet.</p><p><b>Feel:</b> Hip moving freely.</p><p class="mistake"><b>Common mistake:</b> Do not force the range.</p></div></div><div class="warm-card"><div><img src="https://img.youtube.com/vi/oU_oVMJL3-8/hqdefault.jpg" alt="Hip circles exercise form reference" loading="lazy"></div><div><span class="tag">WARM-UP</span><h3>Hip circles</h3><b>10 each direction</b><p>Stand near support. Lift one knee and make controlled circles from the hip, then reverse.</p><p><b>Feel:</b> Hip mobility and control.</p><p class="mistake"><b>Common mistake:</b> Do not use momentum or twist the torso.</p></div></div><div class="warm-card"><div><img src="https://www.barefootrehab.com/wp-content/uploads/2016/01/move-knee.jpg" alt="Knee-to-wall ankle mobility exercise form reference" loading="lazy"></div><div><span class="tag">WARM-UP</span><h3>Knee-to-wall ankle mobility</h3><b>10/side</b><p>Keep heel down and gently drive knee toward wall over the toes.</p><p><b>Feel:</b> Calf/ankle mobility.</p><p class="mistake"><b>Common mistake:</b> Do not let heel lift.</p></div></div>
 <div class="card"><h3>Specific squat warm-up</h3><ul><li>Empty/light bar × 8–10</li><li>1–2 gradual warm-up sets × 5 reps</li><li>Add load only while technique remains crisp</li></ul></div></section>
 <section id="workout" aria-labelledby="workout-title"><h2 id="workout-title" class="section">Main workout</h2>
 <article class="card">
@@ -130,17 +133,17 @@ table caption{text-align:left;font-weight:800;padding:10px 0 7px}
 </article>
 <article class="card">
 <div class="top"><span class="tag">#4</span><b>2 × 20 • Rest 45–60 sec</b></div>
-<h2>Leg Press Calf Raise</h2>
-<p><b>Why:</b> Your final replacement for the unavailable calf-raise machine.</p><p><b>Targets:</b> Gastrocnemius, soleus</p>
-<div class="weight"><b>Starting weight:</b> 30–40 kg as a light test range</div>
-<div class="photo"><small>Verified exercise-form photo</small><img src="https://atlet.az/upload/workout/215_2.jpg" alt="Leg Press Calf Raise exercise form reference" loading="lazy"></div>
+<h2>Smith Machine Calf Raises</h2>
+<p><b>Why:</b> Your replacement for the unavailable calf-raise machine.</p><p><b>Targets:</b> Gastrocnemius, soleus</p>
+<div class="weight"><b>Starting weight:</b> 20–30 kg bar load as a light test range</div>
+<div class="photo"><small>Verified exercise-form photo</small><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Smith_Machine_Calf_Raise/0.jpg" alt="Smith Machine Calf Raises exercise form reference" loading="lazy"></div>
 <div class="gif"><b>GIF:</b> No verified GIF selected. A wrong GIF is worse than no GIF.</div>
-<a class="video-btn" href="https://www.nasm.org/resource-center/exercise-library/leg-press-calf-raise" target="_blank" rel="noopener">Open form video ↗</a>
-<h3>How to do it</h3><ol><li>Use the leg press with back and head supported and the safety mechanism correctly set.</li><li>Place only the balls of your feet on the lower portion of the platform, heels beyond the edge.</li><li>Keep knees stable and nearly straight.</li><li>Lower heels slowly into a comfortable stretch.</li><li>Raise heels as high as comfortable and pause.</li><li>Repeat without bouncing.</li></ol>
+<a class="video-btn" href="https://www.youtube.com/results?search_query=smith+machine+calf+raise+proper+form" target="_blank" rel="noopener">Open form video ↗</a>
+<h3>How to do it</h3><ol><li>Place a step or weight plate under the Smith machine bar for your toes.</li><li>Position the bar across your upper traps. Stand with the balls of your feet on the elevated surface, heels hanging off.</li><li>Unrack the bar and stand tall.</li><li>Lower heels slowly into a comfortable stretch below the platform level.</li><li>Raise heels as high as comfortable, squeeze the calves and pause briefly.</li><li>Repeat without bouncing.</li></ol>
 <p><b>Breathing:</b> Breathe normally. Avoid prolonged breath holding.</p><p><b>Tempo:</b> 2 sec down, brief stretch, 1 sec up, brief squeeze.</p>
-<p class="cues"><b>Key cues:</b> Ankles move • knees stable • controlled range • no bouncing</p>
-<p class="mistake"><b>Common mistakes:</b> Too much weight, bending knees, bouncing, insecure foot placement.</p>
-<p class="stop"><b>Stop/reduce:</b> Platform becomes unstable, heel control is lost, or knee/Achilles pain occurs.</p>
+<p class="cues"><b>Key cues:</b> Controlled range • full stretch at bottom • squeeze at top • no bouncing</p>
+<p class="mistake"><b>Common mistakes:</b> Too much weight, bending knees, bouncing, not using full range of motion.</p>
+<p class="stop"><b>Stop/reduce:</b> Heel control is lost, bar feels unstable on shoulders, or knee/Achilles pain occurs.</p>
 
 </article>
 <article class="card">
@@ -196,7 +199,7 @@ table caption{text-align:left;font-weight:800;padding:10px 0 7px}
       <div><h3>Calf stretch</h3><b>30–45 sec/side</b><p>Hands on wall, one leg back, heel down. Keep the back knee straight for gastrocnemius emphasis.</p><p><strong>Feel:</strong> Calf.</p></div>
     </div>
     <div class="cool-card">
-      <div><img class="exercise-photo" src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Butterfly/0.jpg" alt="Butterfly stretch exercise form reference" loading="lazy"></div>
+      <div><img class="exercise-photo" src="https://img.youtube.com/vi/UGEpQ1BRx-4/hqdefault.jpg" alt="Butterfly stretch exercise form reference" loading="lazy"></div>
       <div><h3>Butterfly stretch</h3><b>30–45 sec</b><p>Sit tall, soles together, knees relaxed outward. Do not force them down.</p><p><strong>Feel:</strong> Inner thighs/groin.</p></div>
     </div>
 </section>
@@ -205,12 +208,12 @@ table caption{text-align:left;font-weight:800;padding:10px 0 7px}
 <tr><td>Squat</td><td>20 kg bar or lighter</td><td>+2.5–5 kg after 2 clean sessions</td></tr>
 <tr><td>RDL</td><td>15–20 kg bar or 7.5–10 kg/hand</td><td>Small increases after stable form</td></tr>
 <tr><td>Leg Press</td><td>40–60 kg plate load</td><td>+5 kg when controlled</td></tr>
-<tr><td>Leg Press Calf Raise</td><td>30–40 kg light test</td><td>Small increases only with control</td></tr>
+<tr><td>Smith Machine Calf Raises</td><td>20–30 kg light test</td><td>Small increases only with control</td></tr>
 <tr><td>Leg Extension</td><td>15–20 kg</td><td>+2.5–5 kg when controlled</td></tr>
 <tr><td>Stability Ball Hamstring Curl</td><td>Bodyweight</td><td>Progress control/range first</td></tr></tbody></table>
-<details><summary>Final equipment substitutions</summary><ul><li>No calf-raise machine → Leg Press Calf Raise</li><li>Broken leg-curl machine → Stability Ball Hamstring Curl</li><li>Romanian Deadlift retained</li></ul></details>
+<details><summary>Final equipment substitutions</summary><ul><li>No calf-raise machine → Smith Machine Calf Raises</li><li>Broken leg-curl machine → Stability Ball Hamstring Curl</li><li>Romanian Deadlift retained</li></ul></details>
 </section>
-<footer><p><b>Image verification:</b> The replacement images were selected from the researched results and matched to the named movement. The leg-press calf raise is specifically documented by NASM, and the stability-ball curl image comes from the Free Exercise DB. I deliberately did not add unverified GIFs.</p>
+<footer><p><b>Image verification:</b> The replacement images were selected from the researched results and matched to the named movement. The Smith machine calf raise and the stability-ball curl image comes from the Free Exercise DB. I deliberately did not add unverified GIFs.</p>
 <p><b>Technical limitation:</b> this file uses direct image URLs because this execution environment cannot download external web binaries for base64 embedding. I have not falsely claimed the images are fully offline-embedded.</p></footer>
 </main>
 <script>

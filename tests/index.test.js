@@ -147,20 +147,17 @@ describe('index.html', () => {
       expect(fs.existsSync(target)).toBe(true);
     });
 
-    // Regression / negative test: this PR replaces the single "Upper Body"
-    // card (which linked to Upper_Body.html) with separate Pull and Push
-    // cards. Pin down that the old combined card/heading and its link are
-    // both gone from the grid, so a future revert wouldn't silently
-    // reintroduce a duplicate/conflicting card.
-    test('does not render a standalone "Upper Body" card or link to Upper_Body.html', () => {
+    // The page now includes both separate Pull/Push cards AND a combined
+    // "Upper Body Full" card linking to Upper_Body.html.
+    test('renders the Upper Body Full card alongside Pull and Push cards', () => {
       const headings = cards.map((card) => card.querySelector('h3').textContent.trim());
-      expect(headings).not.toContain('Upper Body');
+      expect(headings).toContain('Upper Body Full (pull + push) workout');
 
       const hrefs = cards
         .map((card) => card.querySelector('a.workout-button'))
         .filter(Boolean)
         .map((link) => link.getAttribute('href'));
-      expect(hrefs).not.toContain('Upper_Body.html');
+      expect(hrefs).toContain('Upper_Body.html');
     });
 
     test('Lower Body card renders its expected label, badges and link markup', () => {

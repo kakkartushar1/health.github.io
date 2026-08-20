@@ -61,10 +61,16 @@ describe('upper_body_pull.html', () => {
       warmupCards = Array.from(warmupSection.querySelectorAll('.exercise'));
     });
 
-    test('renders exactly two warm-up exercise cards in the expected order', () => {
-      expect(warmupCards.length).toBe(2);
+    test('renders exactly five warm-up exercise cards in the expected order', () => {
+      expect(warmupCards.length).toBe(5);
       const titles = warmupCards.map((c) => c.querySelector('h3').textContent.trim());
-      expect(titles).toEqual(['Wall Slides', 'Scapular Push-ups']);
+      expect(titles).toEqual([
+        'Arm Circles',
+        'Shoulder-Blade Squeezes',
+        'Wall Slides',
+        'Scapular Push-ups',
+        'Light Lat Pulldown',
+      ]);
     });
   });
 
@@ -208,9 +214,9 @@ describe('upper_body_pull.html', () => {
   });
 
   describe('exercise name uniqueness (data integrity)', () => {
-    test('all eleven exercise names across the page are unique', () => {
+    test('all fourteen exercise names across the page are unique', () => {
       const names = Array.from(document.querySelectorAll('h3')).map((h) => h.textContent.trim());
-      expect(names.length).toBe(11);
+      expect(names.length).toBe(14);
       expect(new Set(names).size).toBe(names.length);
     });
   });
@@ -231,13 +237,14 @@ describe('upper_body_pull.html', () => {
   });
 
   describe('overall image inventory', () => {
-    test('embeds exactly eleven images, all as base64 data URIs (no external image URLs)', () => {
+    test('embeds fourteen images total (eleven base64 + three external warm-up references)', () => {
       const images = document.querySelectorAll('img');
-      expect(images.length).toBe(11);
-      images.forEach((img) => {
-        const src = img.getAttribute('src');
-        expect(src.startsWith('data:image/')).toBe(true);
-      });
+      expect(images.length).toBe(14);
+
+      const base64Images = Array.from(images).filter((img) =>
+        img.getAttribute('src').startsWith('data:image/')
+      );
+      expect(base64Images.length).toBe(11);
     });
 
     // Boundary/regression check: a broken embed step could leave behind a
@@ -245,7 +252,9 @@ describe('upper_body_pull.html', () => {
     // placeholder). Requiring a substantial base64 payload guards against
     // that without needing to decode and inspect actual pixel data.
     test('every embedded base64 image payload is substantial (not an empty/placeholder stub)', () => {
-      const images = document.querySelectorAll('img');
+      const images = Array.from(document.querySelectorAll('img')).filter((img) =>
+        img.getAttribute('src').startsWith('data:image/')
+      );
       images.forEach((img) => {
         const src = img.getAttribute('src');
         const base64Payload = src.slice(src.indexOf('base64,') + 'base64,'.length);
@@ -291,16 +300,11 @@ describe('upper_body_pull.html', () => {
     });
   });
 
-  // Regression / negative test: unlike Upper_Body.html (the pre-existing
-  // monolithic page), the images embedded in this newly split page do not
-  // declare alt text. This test pins the *current* behavior so any
-  // accessibility regression (or fix) is caught explicitly instead of
-  // silently passing/failing.
-  describe('image accessibility attributes (documents current gap)', () => {
-    test('embedded exercise images do not currently declare alt text', () => {
+  describe('image accessibility attributes', () => {
+    test('all images declare alt text', () => {
       const images = document.querySelectorAll('img');
       images.forEach((img) => {
-        expect(img.hasAttribute('alt')).toBe(false);
+        expect(img.hasAttribute('alt')).toBe(true);
       });
     });
   });
