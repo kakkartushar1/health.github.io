@@ -1,230 +1,362 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#111827">
-<title>Friday Lower Body | Final Gym Workout</title>
-<style>
-:root{--bg:#f4f6f8;--card:#fff;--ink:#15202b;--muted:#5c6773;--line:#dce2e8;--accent:#1f6feb;--warn:#9b2c2c;--soft:#eef4ff}
-*{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.5}
-header{background:#111827;color:white;padding:22px 16px 18px;position:sticky;top:0;z-index:10;box-shadow:0 2px 12px #0002}
-header h1{margin:0;font-size:25px} header p{margin:5px 0 0;color:#cbd5e1}
-main{max-width:900px;margin:auto;padding:14px}
-.nav{display:flex;gap:8px;overflow:auto;padding:4px 0 12px}
-.nav a{white-space:nowrap;text-decoration:none;color:#123;padding:8px 11px;border:1px solid var(--line);background:#fff;border-radius:999px;font-size:13px}
-.summary{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:14px}
-.summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.stat{background:var(--soft);border-radius:12px;padding:10px;text-align:center} .stat b{display:block;font-size:18px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:15px;margin:14px 0;box-shadow:0 2px 8px #0000000a}
-.card-top{display:flex;justify-content:space-between;gap:8px;align-items:center}
-.tag{font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--accent);background:#eaf2ff;border-radius:999px;padding:5px 8px}
-.prescription{font-weight:800;font-size:14px}
-h2{font-size:22px;margin:10px 0 5px} h3{margin:13px 0 6px;font-size:17px}
-p{margin:7px 0} ol{padding-left:22px} li{margin:7px 0}
-.why{color:#34404c} .weight{background:#fff8e6;border:1px solid #f0d58a;padding:9px;border-radius:10px;margin:10px 0}
-.media-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
-.exercise-photo,.exercise-gif{width:100%;height:260px;object-fit:contain;background:#f7f8fa;border-radius:12px;border:1px solid var(--line)}
-.media-label{font-size:11px;color:var(--muted);margin:4px 2px}
-.no-gif{height:260px;border:1px dashed #b9c1ca;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;color:var(--muted);padding:15px;background:#fafafa}
-.no-gif span{font-weight:800;font-size:12px}
-.actions{margin:10px 0} .video-btn{display:inline-block;background:#111827;color:#fff;text-decoration:none;padding:9px 12px;border-radius:9px;font-weight:700;font-size:13px}
-.cues{background:#eef7f0;border-left:4px solid #31915b;padding:9px;border-radius:6px;margin:10px 0}
-.mistake{color:#7a2d2d} .stop{background:#fff0f0;border:1px solid #efb5b5;padding:9px;border-radius:8px;color:#7a2020}
-.warm-card,.cool-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px;margin:10px 0;display:grid;grid-template-columns:180px 1fr;gap:12px}
-.warm-media img,.cool-card img{width:100%;height:180px;object-fit:contain;border-radius:10px;background:#f7f8fa}
-.warm-media .exercise-gif,.cool-card .exercise-gif{height:140px;margin-top:6px}
-.section-title{margin:22px 2px 8px;font-size:23px}
-.table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden}
-.table th,.table td{padding:9px;border-bottom:1px solid var(--line);text-align:left;font-size:13px}
-.table th{background:#eef2f6}
-.footer{font-size:12px;color:var(--muted);padding:18px 2px 35px}
-details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px;margin:10px 0}
-summary{font-weight:800;cursor:pointer}
-@media(max-width:650px){
- main{padding:10px} .summary-grid{grid-template-columns:1fr 1fr 1fr}
- .media-grid{grid-template-columns:1fr} .exercise-photo,.exercise-gif{height:260px}
- .warm-card,.cool-card{grid-template-columns:1fr}
- .warm-media img,.cool-card img{height:220px}
- header{padding:17px 13px} header h1{font-size:22px}
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-.skip-link{position:fixed;left:12px;top:8px;z-index:1000;transform:translateY(-150%);background:#fff;color:#111827;border:3px solid #111827;border-radius:8px;padding:10px 14px;font-weight:800;text-decoration:none}
-.skip-link:focus{transform:translateY(0)}
-:focus-visible{outline:3px solid #005fcc;outline-offset:3px}
-main:focus{outline:none}
-.photo img,.warm img,.cool img{width:100%;height:220px;max-height:240px;object-fit:contain;background:#f8fafc;border:1px solid var(--line);border-radius:12px}
-.image-fallback{background:#fff7df;border:1px solid #b7791f;border-radius:9px;padding:10px;color:#4a2c00}
-table caption{text-align:left;font-weight:800;padding:10px 0 7px}
-@media (prefers-reduced-motion: reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
-@media(max-width:650px){.photo img{height:210px;max-height:220px}.warm img,.cool img{height:190px;max-height:200px}body{font-size:16px}.nav a,.btn{min-height:44px;display:inline-flex;align-items:center}}
-</style>
+    <meta
+        name="description"
+        content="Gym workout plans including upper body and lower body workouts."
+    >
+
+    <meta name="theme-color" content="#111827">
+
+    <title>My Gym Workouts</title>
+
+    <style>
+        :root {
+            --bg: #f4f6f8;
+            --card: #ffffff;
+            --text: #17202a;
+            --muted: #5f6b76;
+            --border: #dce2e8;
+            --accent: #1769d1;
+            --accent-hover: #0f55ad;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family:
+                system-ui,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                Arial,
+                sans-serif;
+            line-height: 1.5;
+        }
+
+        /* Accessibility */
+        .skip-link {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            z-index: 1000;
+            padding: 10px 14px;
+            background: #ffffff;
+            color: #111827;
+            border: 3px solid #111827;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            transform: translateY(-150%);
+        }
+
+        .skip-link:focus {
+            transform: translateY(0);
+        }
+
+        :focus-visible {
+            outline: 3px solid #005fcc;
+            outline-offset: 3px;
+        }
+
+        header {
+            background: #111827;
+            color: #ffffff;
+            padding: 32px 18px;
+        }
+
+        .header-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: clamp(28px, 6vw, 42px);
+            line-height: 1.15;
+        }
+
+        header p {
+            margin: 8px 0 0;
+            color: #d1d5db;
+            font-size: 16px;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 24px 16px 50px;
+        }
+
+        .intro {
+            margin-bottom: 24px;
+        }
+
+        .intro h2 {
+            margin: 0 0 6px;
+            font-size: 24px;
+        }
+
+        .intro p {
+            margin: 0;
+            color: var(--muted);
+        }
+
+        .workout-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .workout-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            padding: 20px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .workout-icon {
+            width: 52px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #edf4ff;
+            border-radius: 14px;
+            font-size: 26px;
+            margin-bottom: 14px;
+        }
+
+        .workout-card h3 {
+            margin: 0 0 6px;
+            font-size: 22px;
+        }
+
+        .workout-card p {
+            margin: 0 0 16px;
+            color: var(--muted);
+        }
+
+        .workout-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-bottom: 18px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 5px 9px;
+            border-radius: 999px;
+            background: #f0f2f5;
+            color: #374151;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .workout-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            min-height: 46px;
+            padding: 10px 14px;
+            background: var(--accent);
+            color: #ffffff;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: background 0.15s ease;
+        }
+
+        .workout-button:hover {
+            background: var(--accent-hover);
+        }
+
+        .coming-soon {
+            opacity: 0.7;
+        }
+
+        footer {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 16px 30px;
+            color: var(--muted);
+            font-size: 13px;
+            text-align: center;
+        }
+
+        @media (max-width: 650px) {
+            header {
+                padding: 26px 15px;
+            }
+
+            main {
+                padding: 20px 12px 40px;
+            }
+
+            .workout-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .workout-card {
+                padding: 17px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                transition: none !important;
+                animation: none !important;
+            }
+        }
+    </style>
 </head>
+
 <body>
-<a class="skip-link" href="#main-content">Skip to main content</a>
+
+<a class="skip-link" href="#main-content">
+    Skip to main content
+</a>
+
 <header>
-  <h1>Friday Lower Body</h1>
-  <p>Final plan • Warm-up → Strength → Cardio → Stretch</p>
+    <div class="header-content">
+        <h1>My Gym Workouts</h1>
+        <p>Quick access to your workout plans</p>
+    </div>
 </header>
+
 <main id="main-content" tabindex="-1">
-<nav class="nav" aria-label="Workout sections">
-<a href="#quick">Quick view</a><a href="#warmup">Warm-up</a><a href="#workout">Workout</a><a href="#cooldown">Cooldown</a><a href="#notes">Progress</a>
-</nav>
 
-<section id="quick" class="summary" aria-labelledby="quick-title">
-<h2 id="quick-title">Quick view</h2>
-<div class="summary-grid">
-<div class="stat"><b>6</b>main exercises</div><div class="stat"><b>10 min</b>warm-up</div><div class="stat"><b>15 min</b>cardio</div>
-</div>
-<p><strong>Rule:</strong> Start lighter than you think. Keep about 2 good reps in reserve. Technique decides the load.</p>
-</section>
+    <section class="intro" aria-labelledby="workout-heading">
+        <h2 id="workout-heading">Workout Plans</h2>
+        <p>
+            Select your workout below for the complete exercise instructions,
+            images, warm-up and stretching guidance.
+        </p>
+    </section>
 
-<section id="warmup" aria-labelledby="warmup-title"><h2 id="warmup-title" class="section">Warm-up</h2><p>Prepare the joints and movement patterns without tiring the legs.</p><div class="warm"><div></div><div><span class="tag">WARM-UP</span><h3>General cardio</h3><b>5 min</b><p>Brisk treadmill walk, easy cycling or cross-trainer.</p><p><b>Feel:</b> Warm and slightly elevated breathing.</p><p class="mistake"><b>Common mistake:</b> Do not fatigue the legs.</p></div></div><div class="warm"><div><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bodyweight_Squat/0.jpg" alt="Bodyweight squat exercise form reference" loading="lazy"></div><div><span class="tag">WARM-UP</span><h3>Bodyweight squat</h3><b>10 reps</b><p>Feet shoulder-width. Sit down and back, knees follow toes, stand through mid-foot.</p><p><b>Feel:</b> Hips, knees and ankles moving freely.</p><p class="mistake"><b>Common mistake:</b> Do not chase depth before you are warm.</p></div></div><div class="warm"><div><img src="https://i.pinimg.com/originals/b4/a2/02/b4a2020403b4090b15b91acd78ddfd5c.png" alt="Walking lunges exercise form reference" loading="lazy"></div><div><span class="tag">WARM-UP</span><h3>Walking lunges</h3><b>10/leg</b><p>Step forward, lower under control, push through the front foot and continue walking.</p><p><b>Feel:</b> Light quad/glute work and hip mobility.</p><p class="mistake"><b>Common mistake:</b> Do not let the front knee collapse inward.</p></div></div><div class="warm"><div><img src="https://orthopelvicpt.com/wp-content/uploads/2023/02/Common-Exercises-2.jpg" alt="Glute bridges exercise form reference" loading="lazy"></div><div><span class="tag">WARM-UP</span><h3>Glute bridges</h3><b>12 reps</b><p>Feet under knees. Brace, lift hips, squeeze glutes without arching the back.</p><p><b>Feel:</b> Glutes contracting.</p><p class="mistake"><b>Common mistake:</b> Do not hyperextend the lower back.</p></div></div><div class="warm"><div><img src="https://happyhealthy.nl/wp-content/uploads/leg-swing.jpg" alt="Leg swings exercise form reference" loading="lazy"></div><div><span class="tag">WARM-UP</span><h3>Leg swings</h3><b>10 front/back + 10 side/side per leg</b><p>Hold support and swing through a comfortable range while keeping the torso quiet.</p><p><b>Feel:</b> Hip moving freely.</p><p class="mistake"><b>Common mistake:</b> Do not force the range.</p></div></div><div class="warm"><div><img src="https://img.youtube.com/vi/oU_oVMJL3-8/hqdefault.jpg" alt="Hip circles exercise form reference" loading="lazy"></div><div><span class="tag">WARM-UP</span><h3>Hip circles</h3><b>10 each direction</b><p>Stand near support. Lift one knee and make controlled circles from the hip, then reverse.</p><p><b>Feel:</b> Hip mobility and control.</p><p class="mistake"><b>Common mistake:</b> Do not use momentum or twist the torso.</p></div></div><div class="warm"><div><img src="https://www.barefootrehab.com/wp-content/uploads/2016/01/move-knee.jpg" alt="Knee-to-wall ankle mobility exercise form reference" loading="lazy"></div><div><span class="tag">WARM-UP</span><h3>Knee-to-wall ankle mobility</h3><b>10/side</b><p>Keep heel down and gently drive knee toward wall over the toes.</p><p><b>Feel:</b> Calf/ankle mobility.</p><p class="mistake"><b>Common mistake:</b> Do not let heel lift.</p></div></div>
-<div class="card"><h3>Specific squat warm-up</h3><ul><li>Empty/light bar × 8–10</li><li>1–2 gradual warm-up sets × 5 reps</li><li>Add load only while technique remains crisp</li></ul></div></section>
-<section id="workout" aria-labelledby="workout-title"><h2 id="workout-title" class="section">Main workout</h2>
-<article class="card">
-<div class="top"><span class="tag">#1</span><b>2 × 12 • Rest 60–90 sec</b></div>
-<h2>Squat</h2>
-<p><b>Why:</b> Primary lower-body compound movement.</p><p><b>Targets:</b> Quads, glutes, hamstrings, core</p>
-<div class="weight"><b>Starting weight:</b> 20 kg empty bar if comfortable, otherwise a lighter variation</div>
-<div class="photo"><small>Verified exercise-form photo</small><img src="https://assets.clevelandclinic.org/transform/48d7c368-cfa9-4f7b-9957-ce8a2db90403/couple-exercise-body-squat-1295425345" alt="Squat exercise form reference" loading="lazy"></div>
-<div class="gif"><b>GIF:</b> No verified GIF selected. A wrong GIF is worse than no GIF.</div>
-<a class="btn" href="https://www.youtube.com/watch?v=Uv_DKDl7EjA" target="_blank" rel="noopener">Open form video ↗</a>
-<h3>How to do it</h3><ol><li>Set the bar safely in a rack across the upper back.</li><li>Feet about shoulder-width, toes slightly out. Brace before each rep.</li><li>Bend hips and knees together and descend under control.</li><li>Use the deepest comfortable range where balance, foot contact and spinal control remain stable.</li><li>Drive through the mid-foot and stand tall.</li></ol>
-<p><b>Breathing:</b> Inhale and brace before descent. Exhale through the hardest part of the ascent.</p><p><b>Tempo:</b> 2–3 sec down, controlled reversal, 1–2 sec up.</p>
-<p class="cues"><b>Key cues:</b> Heels planted • knees track toes • brace • bar over mid-foot</p>
-<p class="mistake"><b>Common mistakes:</b> Knees collapsing inward, heels lifting, uncontrolled depth, losing the brace.</p>
-<p class="stop"><b>Stop/reduce:</b> Sharp pain, loss of balance, or inability to keep technique.</p>
+    <section
+        class="workout-grid"
+        aria-label="Available workout plans"
+    >
 
-</article>
-<article class="card">
-<div class="top"><span class="tag">#2</span><b>2 × 10–12 • Rest 60–90 sec</b></div>
-<h2>Romanian Deadlift</h2>
-<p><b>Why:</b> Posterior-chain hinge for hamstrings and glutes.</p><p><b>Targets:</b> Hamstrings, glutes, erectors, core, grip</p>
-<div class="weight"><b>Starting weight:</b> 15–20 kg barbell OR 7.5–10 kg dumbbells in each hand</div>
-<div class="photo"><small>Verified exercise-form photo</small><img src="https://stage.bodybuildingmealplan.com/wp-content/uploads/Romanian-Deadlift-vs-Stiff-Leg-Deadlift-Start.jpg" alt="Romanian Deadlift exercise form reference" loading="lazy"></div>
-<div class="gif"><b>GIF:</b> No verified GIF selected. A wrong GIF is worse than no GIF.</div>
-<a class="btn" href="https://www.youtube.com/results?search_query=Romanian+deadlift+proper+form" target="_blank" rel="noopener">Open form video ↗</a>
-<h3>How to do it</h3><ol><li>Stand hip-width with the weight against the thighs. Keep knees softly bent.</li><li>Brace your abdomen and keep ribs stacked over pelvis.</li><li>Push hips straight backward. Think: close a car door with your hips.</li><li>Keep the bar/dumbbells close to the legs.</li><li>Descend only until the hamstrings are strongly stretched while the spine remains neutral.</li><li>Drive hips forward and squeeze glutes to stand tall.</li></ol>
-<p><b>Breathing:</b> Inhale and brace before the hinge. Keep the brace through the rep and exhale as you stand.</p><p><b>Tempo:</b> 2–3 sec down, brief pause, 1–2 sec up.</p>
-<p class="cues"><b>Key cues:</b> Hips back • soft knees • weight close • neutral spine</p>
-<p class="mistake"><b>Common mistakes:</b> Squatting down, rounding the back, weight drifting forward, forcing excessive range.</p>
-<p class="stop"><b>Stop/reduce:</b> Back starts rounding, sharp back pain, numbness/tingling, or lower back becomes the dominant sensation.</p>
-<div class="special">Good hamstring stretch = strong tension along the back of the thighs while your trunk stays stable. Lower-back loading = pressure becomes dominant or your spine changes shape. Reduce range or weight. Do not lower farther simply to reach the floor.</div>
-</article>
-<article class="card">
-<div class="top"><span class="tag">#3</span><b>2 × 12 • Rest 60–90 sec</b></div>
-<h2>Leg Press</h2>
-<p><b>Why:</b> Stable compound movement for additional quad and glute volume.</p><p><b>Targets:</b> Quads, glutes, hamstrings</p>
-<div class="weight"><b>Starting weight:</b> 40–60 kg plate load as a starting test range</div>
-<div class="photo"><small>Verified exercise-form photo</small><img src="https://tarzanweb.jp/uploads/2019/04/20/P064-065_2-w1280.jpg" alt="Leg Press exercise form reference" loading="lazy"></div>
-<div class="gif"><b>GIF:</b> No verified GIF selected. A wrong GIF is worse than no GIF.</div>
-<a class="btn" href="https://www.youtube.com/watch?v=cDGOn-yfKJA" target="_blank" rel="noopener">Open form video ↗</a>
-<h3>How to do it</h3><ol><li>Sit with back and head supported. Feet about hip-width on the platform.</li><li>Brace and release the safety mechanism according to your machine.</li><li>Lower under control without letting the pelvis roll off the pad.</li><li>Press through the whole foot, knees aligned with toes.</li><li>Stop short of a hard knee lockout.</li></ol>
-<p><b>Breathing:</b> Inhale while lowering. Exhale while pressing.</p><p><b>Tempo:</b> 2 sec down, controlled press, no bounce.</p>
-<p class="cues"><b>Key cues:</b> Hips stay down • knees follow toes • controlled depth • no hard lockout</p>
-<p class="mistake"><b>Common mistakes:</b> Too much weight, hips lifting, knees collapsing inward, bouncing.</p>
-<p class="stop"><b>Stop/reduce:</b> Pelvis lifts, knee pain appears, or you cannot control the platform.</p>
+        <!-- UPPER BODY -->
+        <article class="workout-card">
 
-</article>
-<article class="card">
-<div class="top"><span class="tag">#4</span><b>2 × 20 • Rest 45–60 sec</b></div>
-<h2>Leg Press Calf Raise</h2>
-<p><b>Why:</b> Your final replacement for the unavailable calf-raise machine.</p><p><b>Targets:</b> Gastrocnemius, soleus</p>
-<div class="weight"><b>Starting weight:</b> 30–40 kg as a light test range</div>
-<div class="photo"><small>Verified exercise-form photo</small><img src="https://atlet.az/upload/workout/215_2.jpg" alt="Leg Press Calf Raise exercise form reference" loading="lazy"></div>
-<div class="gif"><b>GIF:</b> No verified GIF selected. A wrong GIF is worse than no GIF.</div>
-<a class="btn" href="https://www.nasm.org/resource-center/exercise-library/leg-press-calf-raise" target="_blank" rel="noopener">Open form video ↗</a>
-<h3>How to do it</h3><ol><li>Use the leg press with back and head supported and the safety mechanism correctly set.</li><li>Place only the balls of your feet on the lower portion of the platform, heels beyond the edge.</li><li>Keep knees stable and nearly straight.</li><li>Lower heels slowly into a comfortable stretch.</li><li>Raise heels as high as comfortable and pause.</li><li>Repeat without bouncing.</li></ol>
-<p><b>Breathing:</b> Breathe normally. Avoid prolonged breath holding.</p><p><b>Tempo:</b> 2 sec down, brief stretch, 1 sec up, brief squeeze.</p>
-<p class="cues"><b>Key cues:</b> Ankles move • knees stable • controlled range • no bouncing</p>
-<p class="mistake"><b>Common mistakes:</b> Too much weight, bending knees, bouncing, insecure foot placement.</p>
-<p class="stop"><b>Stop/reduce:</b> Platform becomes unstable, heel control is lost, or knee/Achilles pain occurs.</p>
+            <div class="workout-icon" aria-hidden="true">
+                💪
+            </div>
 
-</article>
-<article class="card">
-<div class="top"><span class="tag">#5</span><b>1–2 × 12 • Rest 45–60 sec</b></div>
-<h2>Leg Extension</h2>
-<p><b>Why:</b> Quad isolation after the compound work.</p><p><b>Targets:</b> Quadriceps</p>
-<div class="weight"><b>Starting weight:</b> 15–20 kg</div>
-<div class="photo"><small>Verified exercise-form photo</small><img src="https://cdn-images-1.readmedium.com/v2/resize:fit:800/1*Bc6f8E9cpeqs5lwYqdm11Q.png" alt="Leg Extension exercise form reference" loading="lazy"></div>
-<div class="gif"><b>GIF:</b> No verified GIF selected. A wrong GIF is worse than no GIF.</div>
-<a class="btn" href="https://www.youtube.com/results?search_query=leg+extension+proper+form" target="_blank" rel="noopener">Open form video ↗</a>
-<h3>How to do it</h3><ol><li>Align knee with the machine pivot.</li><li>Set ankle pad comfortably on the lower shin.</li><li>Keep back against pad and hold handles.</li><li>Extend knees smoothly and pause near the top.</li><li>Lower slowly without dropping the stack.</li></ol>
-<p><b>Breathing:</b> Exhale while extending. Inhale while lowering.</p><p><b>Tempo:</b> 1–2 sec up, 1 sec squeeze, 2–3 sec down.</p>
-<p class="cues"><b>Key cues:</b> Knee aligned • smooth reps • no swing • controlled negative</p>
-<p class="mistake"><b>Common mistakes:</b> Kicking the weight, leaning back, lifting hips, excessive load.</p>
-<p class="stop"><b>Stop/reduce:</b> Sharp knee pain or loss of control.</p>
+            <h3>Upper Body</h3>
 
-</article>
-<article class="card">
-<div class="top"><span class="tag">#6</span><b>2 × 12 • Rest 45–60 sec</b></div>
-<h2>Stability Ball Hamstring Curl</h2>
-<p><b>Why:</b> Your replacement for the broken leg-curl machine.</p><p><b>Targets:</b> Hamstrings, glutes, core</p>
-<div class="weight"><b>Starting weight:</b> Bodyweight</div>
-<div class="photo"><small>Verified exercise-form photo</small><img src="https://ik.imagekit.io/yuhonas/Ball_Leg_Curl/0.jpg" alt="Stability Ball Hamstring Curl exercise form reference" loading="lazy"></div>
-<div class="gif"><b>GIF:</b> No verified GIF selected. A wrong GIF is worse than no GIF.</div>
-<a class="btn" href="https://www.youtube.com/results?search_query=stability+ball+hamstring+curl+proper+form" target="_blank" rel="noopener">Open form video ↗</a>
-<h3>How to do it</h3><ol><li>Lie on your back with heels on the stability ball.</li><li>Brace and lift hips into a bridge.</li><li>Curl the ball toward the glutes while keeping hips elevated.</li><li>Pause briefly.</li><li>Extend legs slowly and return under control.</li></ol>
-<p><b>Breathing:</b> Exhale while curling. Inhale while extending.</p><p><b>Tempo:</b> 1–2 sec curl, brief squeeze, 2–3 sec return.</p>
-<p class="cues"><b>Key cues:</b> Hips up • heels pull • ribs down • slow return</p>
-<p class="mistake"><b>Common mistakes:</b> Hips dropping, over-arching the back, rolling the ball too fast.</p>
-<p class="stop"><b>Stop/reduce:</b> Repeated cramping or lower-back discomfort. Reset and reduce range.</p>
+            <p>
+                Complete upper-body workout with exercise instructions,
+                form references, warm-up and cooldown.
+            </p>
 
-</article>
-<div class="card"><h2>Cardio</h2><p><b>15 min:</b> incline treadmill walk, easy jog, or cycling. Keep it moderate.</p></div></section>
-<section id="cooldown" aria-labelledby="cooldown-title"><h2 id="cooldown-title" class="section">Cooldown</h2><p>Hold each stretch 30–45 seconds. Mild tension is enough. Do not bounce.</p>
-    <div class="cool-card">
-      <div><img class="exercise-photo" src="https://cto-am.com/images/rhb/rhbmi/estiramiento2.webp" alt="Quad stretch exercise form reference" loading="lazy"></div>
-      <div><h3>Quad stretch</h3><b>30–45 sec/side</b><p>Stand tall, hold ankle behind you, keep knees close and pelvis gently tucked.</p><p><strong>Feel:</strong> Front of thigh.</p></div>
-    </div>
-    <div class="cool-card">
-      <div><img class="exercise-photo" src="https://sosphysiotherapy.ca/wp-content/uploads/2022/05/seated-hamstring-stretch-step-1.jpg" alt="Hamstring stretch exercise form reference" loading="lazy"><div class="gif-wrap"><div class="media-label">Animated reference</div><img class="exercise-gif" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Hamstring_stretch-CDC_strength_training_for_older_adults.gif" alt="Hamstring stretch exercise form reference" loading="lazy"></div></div>
-      <div><h3>Hamstring stretch</h3><b>30–45 sec/side</b><p>Use a comfortable seated or standing hinge. Keep the spine long and stop before pain.</p><p><strong>Feel:</strong> Back of thigh.</p></div>
-    </div>
-    <div class="cool-card">
-      <div><img class="exercise-photo" src="https://s3.amazonaws.com/prod.skimble/assets/3133144/image_iphone.jpg" alt="Figure-4 glute stretch exercise form reference" loading="lazy"></div>
-      <div><h3>Figure-4 glute stretch</h3><b>30–45 sec/side</b><p>Cross ankle over opposite thigh and gently bring the legs toward you.</p><p><strong>Feel:</strong> Glute/outer hip.</p></div>
-    </div>
-    <div class="cool-card">
-      <div><img class="exercise-photo" src="https://hips.hearstapps.com/hmg-prod/images/rw-postrunstretch-jess-hip-flexor-stretch-1600969797.jpg?crop=0.889080956496687xw%3A1xh%3Bcenter%2Ctop&resize=1200%3A%2A" alt="Hip flexor stretch exercise form reference" loading="lazy"></div>
-      <div><h3>Hip flexor stretch</h3><b>30–45 sec/side</b><p>Half-kneel, tuck pelvis slightly, then shift forward without arching the back.</p><p><strong>Feel:</strong> Front of hip.</p></div>
-    </div>
-    <div class="cool-card">
-      <div><img class="exercise-photo" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/The_Calf_Stretch_110402-A-XD329-017.jpg" alt="Calf stretch exercise form reference" loading="lazy"></div>
-      <div><h3>Calf stretch</h3><b>30–45 sec/side</b><p>Hands on wall, one leg back, heel down. Keep the back knee straight for gastrocnemius emphasis.</p><p><strong>Feel:</strong> Calf.</p></div>
-    </div>
-    <div class="cool-card">
-      <div><img class="exercise-photo" src="https://ghspineandlasercentre.com/uploads/exercise-for-recovery-crop/VKpQI-8oghr-2wdoB-rsN6w-0yPGj.jpg" alt="Butterfly stretch exercise form reference" loading="lazy"></div>
-      <div><h3>Butterfly stretch</h3><b>30–45 sec</b><p>Sit tall, soles together, knees relaxed outward. Do not force them down.</p><p><strong>Feel:</strong> Inner thighs/groin.</p></div>
-    </div>
-</section>
-<section id="progress" aria-labelledby="progress-title"><h2 id="progress-title" class="section">Progress</h2>
-<table><caption>Starting weights and progression guidance</caption><thead><tr><th scope="col">Exercise</th><th scope="col">Starting point</th><th scope="col">Progress</th></tr></thead><tbody>
-<tr><td>Squat</td><td>20 kg bar or lighter</td><td>+2.5–5 kg after 2 clean sessions</td></tr>
-<tr><td>RDL</td><td>15–20 kg bar or 7.5–10 kg/hand</td><td>Small increases after stable form</td></tr>
-<tr><td>Leg Press</td><td>40–60 kg plate load</td><td>+5 kg when controlled</td></tr>
-<tr><td>Leg Press Calf Raise</td><td>30–40 kg light test</td><td>Small increases only with control</td></tr>
-<tr><td>Leg Extension</td><td>15–20 kg</td><td>+2.5–5 kg when controlled</td></tr>
-<tr><td>Stability Ball Hamstring Curl</td><td>Bodyweight</td><td>Progress control/range first</td></tr></tbody></table>
-<details><summary>Final equipment substitutions</summary><ul><li>No calf-raise machine → Leg Press Calf Raise</li><li>Broken leg-curl machine → Stability Ball Hamstring Curl</li><li>Romanian Deadlift retained</li></ul></details>
-</section>
-<footer><p><b>Image verification:</b> The replacement images were selected from the researched results and matched to the named movement. The leg-press calf raise is specifically documented by NASM, and the stability-ball curl image comes from the Free Exercise DB. I deliberately did not add unverified GIFs.</p>
-<p><b>Technical limitation:</b> this file uses direct image URLs because this execution environment cannot download external web binaries for base64 embedding. I have not falsely claimed the images are fully offline-embedded.</p></footer>
+            <div class="workout-meta">
+                <span class="badge">Upper Body</span>
+                <span class="badge">Gym</span>
+            </div>
+
+            <a
+                class="workout-button"
+                href="Upper_Body.html"
+                aria-label="Open Upper Body workout"
+            >
+                Open Upper Body Workout
+            </a>
+
+        </article>
+
+
+        <!-- LOWER BODY -->
+        <article class="workout-card">
+
+            <div class="workout-icon" aria-hidden="true">
+                🦵
+            </div>
+
+            <h3>Lower Body</h3>
+
+            <p>
+                Friday lower-body workout with warm-up, strength exercises,
+                cardio and cooldown stretches.
+            </p>
+
+            <div class="workout-meta">
+                <span class="badge">Friday</span>
+                <span class="badge">Lower Body</span>
+                <span class="badge">Gym</span>
+            </div>
+
+            <a
+                class="workout-button"
+                href="Lower_Body.html"
+                aria-label="Open Friday Lower Body workout"
+            >
+                Open Lower Body Workout
+            </a>
+
+        </article>
+
+
+        <!-- FUTURE WORKOUT -->
+        <article class="workout-card coming-soon">
+
+            <div class="workout-icon" aria-hidden="true">
+                📋
+            </div>
+
+            <h3>Future Workout</h3>
+
+            <p>
+                Add another workout here whenever you create one.
+            </p>
+
+            <div class="workout-meta">
+                <span class="badge">Coming Soon</span>
+            </div>
+
+            <span
+                class="workout-button"
+                aria-disabled="true"
+            >
+                Coming Soon
+            </span>
+
+        </article>
+
+    </section>
+
 </main>
-<script>
-(function () {
-  document.querySelectorAll('img').forEach(function (img) {
-    img.addEventListener('error', function () {
-      img.hidden = true;
-      var fallback = document.createElement('p');
-      fallback.className = 'image-fallback';
-      fallback.textContent = 'Exercise photo unavailable. Use the written form instructions.';
-      fallback.setAttribute('role', 'status');
-      img.parentNode.appendChild(fallback);
-    }, { once: true });
-  });
-})();
-</script>
-</body></html>
+
+<footer>
+    <p>
+        Personal gym workout library
+    </p>
+</footer>
+
+</body>
+</html>

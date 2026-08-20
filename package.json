@@ -1,0 +1,19 @@
+{
+  "name": "gym-workout-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static gym workout HTML pages (index, Upper Body, Lower Body).",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jsdom": "^24.1.3"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "testMatch": [
+      "<rootDir>/tests/**/*.test.js"
+    ]
+  }
+}
