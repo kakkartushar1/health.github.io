@@ -54,7 +54,7 @@ describe('Upper_Body.html', () => {
 
       const warmupSection = warmupHeading.closest('section');
       const warmupCards = warmupSection.querySelectorAll('.exercise');
-      expect(warmupCards.length).toBe(5);
+      expect(warmupCards.length).toBe(6);
 
       const titles = Array.from(warmupCards).map((c) => c.querySelector('h3').textContent.trim());
       expect(titles).toEqual([
@@ -62,6 +62,7 @@ describe('Upper_Body.html', () => {
         'Shoulder-Blade Squeezes',
         'Wall Slides',
         'Scapular Push-ups',
+        'Band Face Pull',
         'Light Lat Pulldown',
       ]);
     });
@@ -179,7 +180,7 @@ describe('Upper_Body.html', () => {
   describe('exercise name uniqueness (data integrity)', () => {
     test('all eighteen exercise names across the page are unique', () => {
       const names = Array.from(document.querySelectorAll('h3')).map((h) => h.textContent.trim());
-      expect(names.length).toBe(18);
+      expect(names.length).toBe(19);
       expect(new Set(names).size).toBe(names.length);
     });
   });
@@ -203,9 +204,9 @@ describe('Upper_Body.html', () => {
   });
 
   describe('overall image inventory', () => {
-    test('embeds eighteen images total (fifteen base64 + three external warm-up references)', () => {
+    test('embeds nineteen images total (fifteen base64 + four external warm-up references)', () => {
       const images = document.querySelectorAll('img');
-      expect(images.length).toBe(18);
+      expect(images.length).toBe(19);
 
       const base64Images = Array.from(images).filter((img) =>
         img.getAttribute('src').startsWith('data:image/')

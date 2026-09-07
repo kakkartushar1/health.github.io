@@ -61,14 +61,15 @@ describe('upper_body_push.html', () => {
       warmupCards = Array.from(warmupSection.querySelectorAll('.exercise'));
     });
 
-    test('renders exactly five warm-up exercise cards in the expected order', () => {
-      expect(warmupCards.length).toBe(5);
+    test('renders exactly six warm-up exercise cards in the expected order', () => {
+      expect(warmupCards.length).toBe(6);
       const titles = warmupCards.map((c) => c.querySelector('h3').textContent.trim());
       expect(titles).toEqual([
         'Arm Circles',
         'Shoulder-Blade Squeezes',
         'Wall Slides',
         'Scapular Push-ups',
+        'Band Pull-Aparts',
         'Light Lat Pulldown',
       ]);
     });
@@ -85,8 +86,8 @@ describe('upper_body_push.html', () => {
       rows = Array.from(table.querySelectorAll('tr')).slice(1); // skip header row
     });
 
-    test('lists exactly four push exercises', () => {
-      expect(rows.length).toBe(4);
+    test('lists exactly five push exercises', () => {
+      expect(rows.length).toBe(5);
     });
 
     test('rows contain exercise name, sets x reps and rest time in the expected columns', () => {
@@ -97,14 +98,14 @@ describe('upper_body_push.html', () => {
       expect(firstCells[3].textContent.trim()).toBe('90 sec');
 
       const lastCells = rows[rows.length - 1].querySelectorAll('td');
-      expect(lastCells[1].textContent.trim()).toBe('Cable Triceps Pushdown');
-      expect(lastCells[2].textContent.trim()).toBe('1 × 10');
+      expect(lastCells[1].textContent.trim()).toBe('Band Triceps Pushdown');
+      expect(lastCells[2].textContent.trim()).toBe('2 × 12–15');
       expect(lastCells[3].textContent.trim()).toBe('45 sec');
     });
 
     test('exercise numbers are sequential starting at 1', () => {
       const numbers = rows.map((r) => Number(r.querySelector('td').textContent.trim()));
-      expect(numbers).toEqual([1, 2, 3, 4]);
+      expect(numbers).toEqual([1, 2, 3, 4, 5]);
     });
 
     test('exercise names match the expected push-day list in order', () => {
@@ -114,6 +115,7 @@ describe('upper_body_push.html', () => {
         'Pec Deck Fly',
         'Dumbbell Lateral Raise',
         'Cable Triceps Pushdown',
+        'Band Triceps Pushdown',
       ]);
     });
   });
@@ -128,22 +130,36 @@ describe('upper_body_push.html', () => {
       cards = Array.from(wodHeading.closest('section').querySelectorAll('.exercise'));
     });
 
-    test('renders exactly four exercise cards matching the summary table', () => {
-      expect(cards.length).toBe(4);
+    test('renders exactly five exercise cards matching the summary table', () => {
+      expect(cards.length).toBe(5);
       const titles = cards.map((c) => c.querySelector('h3').textContent.trim());
       expect(titles).toEqual([
         'Dumbbell Bench Press',
         'Pec Deck Fly',
         'Dumbbell Lateral Raise',
         'Cable Triceps Pushdown',
+        'Band Triceps Pushdown',
       ]);
     });
 
-    test('each card embeds a base64 data-URI image', () => {
+    test('each card uses a valid local, base64 or external HTTPS image source', () => {
       cards.forEach((card) => {
         const img = card.querySelector('.photo img');
         expect(img).not.toBeNull();
-        expect(img.getAttribute('src')).toMatch(/^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/);
+        const src = img.getAttribute('src');
+        if (src.startsWith('data:image/')) {
+          expect(src).toMatch(
+            /^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/]+={0,2}$/
+          );
+        } else if (src.startsWith('https://')) {
+          expect(src).toMatch(/^https:\/\//);
+        } else {
+          expect(src).toMatch(/^assets\/images\/exercises\/[^/?#\s]+\.(?:jpe?g|png|webp)$/i);
+          const fs = require('fs');
+          const filePath = path.join(ROOT_DIR, src);
+          expect(fs.existsSync(filePath)).toBe(true);
+        }
+        expect(img.getAttribute('alt')).toBeTruthy();
       });
     });
 
@@ -215,9 +231,9 @@ describe('upper_body_push.html', () => {
   });
 
   describe('exercise name uniqueness (data integrity)', () => {
-    test('all fourteen exercise names across the page are unique', () => {
+    test('all sixteen exercise names across the page are unique', () => {
       const names = Array.from(document.querySelectorAll('h3')).map((h) => h.textContent.trim());
-      expect(names.length).toBe(14);
+      expect(names.length).toBe(16);
       expect(new Set(names).size).toBe(names.length);
     });
   });
@@ -238,9 +254,9 @@ describe('upper_body_push.html', () => {
   });
 
   describe('overall image inventory', () => {
-    test('embeds fourteen images total (eleven base64 + three external warm-up references)', () => {
+    test('embeds sixteen images total (eleven base64 + five external warm-up references)', () => {
       const images = document.querySelectorAll('img');
-      expect(images.length).toBe(14);
+      expect(images.length).toBe(16);
 
       const base64Images = Array.from(images).filter((img) =>
         img.getAttribute('src').startsWith('data:image/')
