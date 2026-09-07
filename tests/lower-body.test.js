@@ -102,21 +102,21 @@ describe('Lower_Body.html', () => {
     test('renders three summary stats', () => {
       const stats = document.querySelectorAll('#quick .stat');
       expect(stats.length).toBe(3);
-      expect(stats[0].textContent).toMatch(/6/);
+      expect(stats[0].textContent).toMatch(/7/);
       expect(stats[0].textContent).toMatch(/main exercises/i);
     });
   });
 
   describe('warm-up section', () => {
-    test('renders seven warm-up drills', () => {
+    test('renders eight warm-up drills', () => {
       const warmItems = document.querySelectorAll('#warmup .warm-card');
-      expect(warmItems.length).toBe(7);
+      expect(warmItems.length).toBe(8);
     });
 
     test('every warm-up image (except the cardio-only entry) has alt text and lazy loading', () => {
       const images = document.querySelectorAll('#warmup .warm-card img');
-      // 6 of the 7 warm-up entries include a reference image (cardio does not).
-      expect(images.length).toBe(6);
+      // 7 of the 8 warm-up entries include a reference image (cardio does not).
+      expect(images.length).toBe(7);
       images.forEach((img) => {
         expect(img.getAttribute('alt')).toBeTruthy();
         expect(img.getAttribute('loading')).toBe('lazy');
@@ -131,13 +131,13 @@ describe('Lower_Body.html', () => {
       articles = Array.from(document.querySelectorAll('#workout article.card'));
     });
 
-    test('renders exactly six main exercises', () => {
-      expect(articles.length).toBe(6);
+    test('renders exactly seven main exercises', () => {
+      expect(articles.length).toBe(7);
     });
 
-    test('exercises are numbered #1 through #6 in order', () => {
+    test('exercises are numbered #1 through #7 in order', () => {
       const tags = articles.map((a) => a.querySelector('.top .tag').textContent.trim());
-      expect(tags).toEqual(['#1', '#2', '#3', '#4', '#5', '#6']);
+      expect(tags).toEqual(['#1', '#2', '#3', '#4', '#5', '#6', '#7']);
     });
 
     test('each exercise has a name, a starting weight, a form video link and step-by-step instructions', () => {
@@ -175,6 +175,7 @@ describe('Lower_Body.html', () => {
         'Smith Machine Calf Raises',
         'Leg Extension',
         'Stability Ball Hamstring Curl',
+        'Band Glute Bridge',
       ]);
     });
   });
@@ -204,7 +205,7 @@ describe('Lower_Body.html', () => {
       expect(table.querySelector('caption').textContent).toMatch(/progression/i);
 
       const rows = table.querySelectorAll('tbody tr');
-      expect(rows.length).toBe(6);
+      expect(rows.length).toBe(7);
       expect(rows[0].querySelector('td').textContent.trim()).toBe('Squat');
     });
 
@@ -292,9 +293,9 @@ describe('Lower_Body.html', () => {
 
   describe('image count sanity check', () => {
     test('total image count matches warm-up + exercises + cooldown images', () => {
-      // 6 warm-up + 6 exercises + 6 cooldown photos + 1 cooldown gif = 19
+      // 7 warm-up + 7 exercises + 6 cooldown photos + 1 cooldown gif = 21
       const images = document.querySelectorAll('img');
-      expect(images.length).toBe(19);
+      expect(images.length).toBe(21);
     });
 
     test('every <img> in the document declares loading="lazy"', () => {
