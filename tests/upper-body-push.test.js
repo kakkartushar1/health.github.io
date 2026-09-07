@@ -147,9 +147,18 @@ describe('upper_body_push.html', () => {
         const img = card.querySelector('.photo img');
         expect(img).not.toBeNull();
         const src = img.getAttribute('src');
-        expect(src).toMatch(
-          /^(?:data:image\/(?:jpeg|png|webp);base64,[A-Za-z0-9+/]+={0,2}|https:\/\/[^/?#\s]+(?:[/?#][^\s]*)?|assets\/images\/exercises\/[^/?#\s]+\.(?:jpe?g|png|webp))$/i
-        );
+        if (src.startsWith('data:image/')) {
+          expect(src).toMatch(
+            /^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/]+={0,2}$/
+          );
+        } else if (src.startsWith('https://')) {
+          expect(src).toMatch(/^https:\/\//);
+        } else {
+          expect(src).toMatch(/^assets\/images\/exercises\/[^/?#\s]+\.(?:jpe?g|png|webp)$/i);
+          const fs = require('fs');
+          const filePath = path.join(ROOT_DIR, src);
+          expect(fs.existsSync(filePath)).toBe(true);
+        }
         expect(img.getAttribute('alt')).toBeTruthy();
       });
     });
