@@ -142,12 +142,14 @@ describe('upper_body_push.html', () => {
       ]);
     });
 
-    test('each card embeds an image (base64 or external HTTPS reference)', () => {
+    test('each card uses a valid local, base64 or external HTTPS image source', () => {
       cards.forEach((card) => {
         const img = card.querySelector('.photo img');
         expect(img).not.toBeNull();
         const src = img.getAttribute('src');
-        expect(src).toMatch(/^(data:image\/(jpeg|png|webp);base64,|https:\/\/)/);
+        expect(src).toMatch(
+          /^(?:data:image\/(?:jpeg|png|webp);base64,[A-Za-z0-9+/]+={0,2}|https:\/\/[^/?#\s]+(?:[/?#][^\s]*)?|assets\/images\/exercises\/[^/?#\s]+\.(?:jpe?g|png|webp))$/i
+        );
         expect(img.getAttribute('alt')).toBeTruthy();
       });
     });
