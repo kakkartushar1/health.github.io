@@ -28,4 +28,28 @@
       img.parentNode.appendChild(fallback);
     }, { once: true });
   });
+
+  var navToggle = document.querySelector('.nav-toggle');
+  var nav = document.querySelector('.nav');
+  if (navToggle && nav) {
+    navToggle.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var open = nav.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', String(open));
+    });
+    nav.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        var wasOpen = nav.classList.contains('open');
+        nav.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        if (wasOpen) navToggle.focus();
+      });
+    });
+    document.addEventListener('click', function (e) {
+      if (!nav.classList.contains('open')) return;
+      if (nav.contains(e.target) || navToggle.contains(e.target)) return;
+      nav.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  }
 })();
