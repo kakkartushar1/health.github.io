@@ -56,10 +56,10 @@ describe('Lower_Body.html', () => {
 
   describe('section navigation', () => {
     const EXPECTED_LINKS = [
-      { href: '#quick', label: 'Quick view' },
-      { href: '#warmup', label: 'Warm-up' },
+      { href: '#quick', label: 'Quick View' },
+      { href: '#warmup', label: 'Warm Up' },
       { href: '#workout', label: 'Workout' },
-      { href: '#cooldown', label: 'Cooldown' },
+      { href: '#cooldown', label: 'Cool Down' },
       { href: '#progress', label: 'Progress' },
     ];
 
@@ -145,7 +145,7 @@ describe('Lower_Body.html', () => {
         expect(article.querySelector('h2').textContent.trim().length).toBeGreaterThan(0);
         expect(article.querySelector('.weight')).not.toBeNull();
 
-        const videoLink = article.querySelector('a.video-btn');
+        const videoLink = article.querySelector('a.source');
         expect(videoLink).not.toBeNull();
         expect(videoLink.getAttribute('href')).toMatch(/^https:\/\//);
         expect(videoLink.getAttribute('target')).toBe('_blank');
