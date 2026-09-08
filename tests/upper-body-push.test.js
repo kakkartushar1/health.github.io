@@ -240,10 +240,9 @@ describe('upper_body_push.html', () => {
 
   describe('print / cheat-sheet button', () => {
     test('renders a print button wired to window.print()', () => {
-      const button = document.querySelector('button');
+      const button = document.querySelector('button[onclick="window.print()"]');
       expect(button).not.toBeNull();
       expect(button.textContent.trim()).toBe('Print / Save as PDF');
-      expect(button.getAttribute('onclick')).toBe('window.print()');
     });
   });
 

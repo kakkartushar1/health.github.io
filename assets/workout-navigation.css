@@ -103,13 +103,23 @@ html {
 }
 
 @media (max-width: 650px) {
+    .site-header {
+        position: relative;
+    }
+
+    .site-header .hero,
+    .site-header > h1,
+    .site-header > p {
+        padding-left: 52px;
+    }
+
     .nav-toggle {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        position: absolute;
-        top: 16px;
-        left: 16px;
+        position: fixed;
+        top: 12px;
+        left: 12px;
         min-width: 44px;
         min-height: 44px;
         padding: 0;
@@ -119,14 +129,31 @@ html {
         color: #fff;
         font-size: 22px;
         cursor: pointer;
-        z-index: 11;
+        z-index: 30;
+        box-shadow: 0 2px 8px #0003;
+    }
+
+    .site-header .home-button {
+        position: fixed;
+        top: 12px;
+        right: 12px;
+        z-index: 30;
+        box-shadow: 0 2px 8px #0003;
     }
 
     .nav {
         display: none;
         flex-direction: column;
         gap: 6px;
-        padding: 8px 0 12px;
+        position: fixed;
+        top: 64px;
+        left: 12px;
+        right: 12px;
+        z-index: 29;
+        background: #fff;
+        border-radius: 12px;
+        padding: 10px;
+        box-shadow: 0 4px 20px #0004;
     }
 
     .nav.open {
@@ -135,11 +162,6 @@ html {
 
     .nav a {
         justify-content: center;
-    }
-
-    .site-header .home-button {
-        top: 16px;
-        right: 16px;
     }
 
     .site-header h1 {
