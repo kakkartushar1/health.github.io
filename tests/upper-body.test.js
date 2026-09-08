@@ -111,12 +111,13 @@ describe('Upper_Body.html', () => {
       cards = Array.from(wodHeading.closest('section').querySelectorAll('.exercise'));
     });
 
-    test('renders exactly eight exercise cards matching the summary table', () => {
-      expect(cards.length).toBe(8);
+    test('renders exactly nine exercise cards matching the summary table', () => {
+      expect(cards.length).toBe(9);
       const titles = cards.map((c) => c.querySelector('h3').textContent.trim());
       expect(titles).toEqual([
         'Lat Pulldown',
         'Chest-Supported Dumbbell Row',
+        'Band Seated Row',
         'Bird Dog',
         'Dumbbell Bench Press',
         'Pec Deck Fly',
@@ -126,11 +127,15 @@ describe('Upper_Body.html', () => {
       ]);
     });
 
-    test('each card embeds a base64 data-URI image with non-empty alt text', () => {
+    test('each card has an image with non-empty alt text', () => {
       cards.forEach((card) => {
         const img = card.querySelector('.photo img');
         expect(img).not.toBeNull();
-        expect(img.getAttribute('src')).toMatch(/^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/);
+        const src = img.getAttribute('src');
+        expect(
+          src.match(/^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/) ||
+          src.startsWith('assets/')
+        ).toBeTruthy();
         expect(img.getAttribute('alt')).toBeTruthy();
       });
     });
@@ -178,9 +183,9 @@ describe('Upper_Body.html', () => {
   });
 
   describe('exercise name uniqueness (data integrity)', () => {
-    test('all eighteen exercise names across the page are unique', () => {
+    test('all exercise names across the page are unique', () => {
       const names = Array.from(document.querySelectorAll('h3')).map((h) => h.textContent.trim());
-      expect(names.length).toBe(19);
+      expect(names.length).toBe(20);
       expect(new Set(names).size).toBe(names.length);
     });
   });
@@ -221,9 +226,9 @@ describe('Upper_Body.html', () => {
   });
 
   describe('overall image inventory', () => {
-    test('keeps nineteen images total (fifteen embedded + four local assets)', () => {
+    test('keeps twenty images total (fifteen embedded + five local assets)', () => {
       const images = document.querySelectorAll('img');
-      expect(images.length).toBe(19);
+      expect(images.length).toBe(20);
 
       const base64Images = Array.from(images).filter((img) =>
         img.getAttribute('src').startsWith('data:image/')
@@ -233,7 +238,7 @@ describe('Upper_Body.html', () => {
       const localImages = Array.from(images).filter((img) =>
         img.getAttribute('src').startsWith('assets/images/exercises/')
       );
-      expect(localImages.length).toBe(4);
+      expect(localImages.length).toBe(5);
       localImages.forEach((img) => {
         expect(fs.existsSync(path.join(ROOT_DIR, img.getAttribute('src')))).toBe(true);
       });

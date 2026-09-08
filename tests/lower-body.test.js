@@ -233,9 +233,9 @@ describe('Lower_Body.html', () => {
       const img = glutesCard.querySelector('img');
       expect(img).not.toBeNull();
       expect(img.getAttribute('src')).toBe(
-        'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Glute_Bridge/0.jpg'
+        'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Glute_Bridge/0.jpg'
       );
-      expect(img.getAttribute('alt')).toBe('Glute bridges exercise form reference');
+      expect(img.getAttribute('alt')).toBe('Bodyweight glute bridge exercise form reference');
     });
 
     test('the "Romanian Deadlift" exercise photo points to the Wikimedia Commons reference', () => {
@@ -320,9 +320,9 @@ describe('Lower_Body.html', () => {
       const img = glutesCard.querySelector('img');
       expect(img).not.toBeNull();
       expect(img.getAttribute('src')).toBe(
-        'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Glute_Bridge/0.jpg'
+        'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Glute_Bridge/0.jpg'
       );
-      expect(img.getAttribute('alt')).toBe('Glute bridges exercise form reference');
+      expect(img.getAttribute('alt')).toBe('Bodyweight glute bridge exercise form reference');
     });
 
     test('Romanian Deadlift photo points to the new Wikimedia Commons source', () => {

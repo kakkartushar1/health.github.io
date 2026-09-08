@@ -73,9 +73,6 @@ html {
     font-size: 13px;
 }
 
-#main-content:focus {
-    outline: none;
-}
 
 #scroll-to-top {
     position: fixed;
