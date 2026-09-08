@@ -80,8 +80,8 @@ describe('Upper_Body.html', () => {
       rows = Array.from(table.querySelectorAll('tr')).slice(1); // skip header row
     });
 
-    test('lists exactly eight exercises', () => {
-      expect(rows.length).toBe(8);
+    test('lists exactly nine exercises', () => {
+      expect(rows.length).toBe(9);
     });
 
     test('rows contain exercise name, sets x reps and rest time in the expected columns', () => {
@@ -97,7 +97,7 @@ describe('Upper_Body.html', () => {
 
     test('exercise numbers are sequential starting at 1', () => {
       const numbers = rows.map((r) => Number(r.querySelector('td').textContent.trim()));
-      expect(numbers).toEqual([1, 2, 3, 4, 5, 6, 7, 8]);
+      expect(numbers).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9]);
     });
   });
 
@@ -111,12 +111,13 @@ describe('Upper_Body.html', () => {
       cards = Array.from(wodHeading.closest('section').querySelectorAll('.exercise'));
     });
 
-    test('renders exactly eight exercise cards matching the summary table', () => {
-      expect(cards.length).toBe(8);
+    test('renders exactly nine exercise cards matching the summary table', () => {
+      expect(cards.length).toBe(9);
       const titles = cards.map((c) => c.querySelector('h3').textContent.trim());
       expect(titles).toEqual([
         'Lat Pulldown',
         'Chest-Supported Dumbbell Row',
+        'Band Seated Row',
         'Bird Dog',
         'Dumbbell Bench Press',
         'Pec Deck Fly',
@@ -126,11 +127,15 @@ describe('Upper_Body.html', () => {
       ]);
     });
 
-    test('each card embeds a base64 data-URI image with non-empty alt text', () => {
+    test('each card has an image with non-empty alt text', () => {
       cards.forEach((card) => {
         const img = card.querySelector('.photo img');
         expect(img).not.toBeNull();
-        expect(img.getAttribute('src')).toMatch(/^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/);
+        const src = img.getAttribute('src');
+        expect(
+          src.match(/^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/) ||
+          src.startsWith('assets/')
+        ).toBeTruthy();
         expect(img.getAttribute('alt')).toBeTruthy();
       });
     });
@@ -178,9 +183,9 @@ describe('Upper_Body.html', () => {
   });
 
   describe('exercise name uniqueness (data integrity)', () => {
-    test('all eighteen exercise names across the page are unique', () => {
+    test('all exercise names across the page are unique', () => {
       const names = Array.from(document.querySelectorAll('h3')).map((h) => h.textContent.trim());
-      expect(names.length).toBe(19);
+      expect(names.length).toBe(20);
       expect(new Set(names).size).toBe(names.length);
     });
   });
@@ -194,24 +199,49 @@ describe('Upper_Body.html', () => {
     });
   });
 
-  describe('no executable script tags', () => {
-    // Unlike Lower_Body.html (which ships an inline fallback-image script),
-    // Upper_Body.html relies purely on embedded base64 images and markup.
-    // This guards against an unexpected/unaudited <script> being introduced.
-    test('the document does not contain any <script> elements', () => {
-      expect(document.querySelectorAll('script').length).toBe(0);
+  describe('shared navigation and controls', () => {
+    test('loads shared navigation styles and behavior', () => {
+      expect(document.querySelector('link[href="assets/workout-navigation.css"]')).not.toBeNull();
+      expect(document.querySelector('script[src="assets/workout-navigation.js"]')).not.toBeNull();
+    });
+
+    test('renders the required navigation links, home button and section anchors', () => {
+      const links = Array.from(document.querySelectorAll('.nav a')).map((link) => [
+        link.textContent.trim(),
+        link.getAttribute('href'),
+      ]);
+      expect(links).toEqual([
+        ['Quick View', '#quick'],
+        ['Warm Up', '#warmup'],
+        ['Workout', '#workout'],
+        ['Cool Down', '#cooldown'],
+        ['Progress', '#progress'],
+      ]);
+      expect(document.querySelector('.home-button').getAttribute('href')).toBe('index.html');
+      ['quick', 'warmup', 'workout', 'cooldown', 'progress'].forEach((id) => {
+        expect(document.getElementById(id)).not.toBeNull();
+      });
+      expect(document.querySelector('#scroll-to-top')).not.toBeNull();
     });
   });
 
   describe('overall image inventory', () => {
-    test('embeds nineteen images total (fifteen base64 + four external warm-up references)', () => {
+    test('keeps twenty images total (fifteen embedded + five local assets)', () => {
       const images = document.querySelectorAll('img');
-      expect(images.length).toBe(19);
+      expect(images.length).toBe(20);
 
       const base64Images = Array.from(images).filter((img) =>
         img.getAttribute('src').startsWith('data:image/')
       );
       expect(base64Images.length).toBe(15);
+
+      const localImages = Array.from(images).filter((img) =>
+        img.getAttribute('src').startsWith('assets/images/exercises/')
+      );
+      expect(localImages.length).toBe(5);
+      localImages.forEach((img) => {
+        expect(fs.existsSync(path.join(ROOT_DIR, img.getAttribute('src')))).toBe(true);
+      });
     });
 
     // Boundary/regression check: a broken embed step could leave behind a

@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Upper Body Pull Day</title>
+<link rel="stylesheet" href="assets/workout-navigation.css">
 <style>
 :root{--bg:#f4f6f8;--card:#fff;--ink:#17202a;--muted:#64717c;--accent:#1769aa;--line:#dbe2e8;--ok:#eaf6ee}
 *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,Helvetica,sans-serif;line-height:1.48}
@@ -27,12 +28,20 @@ button{padding:10px 14px;border:0;border-radius:8px;background:#17202a;color:#ff
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to content</a>
 <div class="wrap">
 
-<section class="hero">
+<header class="site-header">
+<section class="hero" id="quick">
 <h1>Monday • Upper Body Pull Workout</h1>
 <p>Pull-focused upper-body session covering back, biceps and core. All exercise photos are embedded locally so the page works without external image loading.</p>
 </section>
+<a class="home-button" href="index.html">Home</a>
+<nav class="nav" aria-label="Workout sections">
+<a href="#quick">Quick View</a><a href="#warmup">Warm Up</a><a href="#workout">Workout</a><a href="#cooldown">Cool Down</a><a href="#progress">Progress</a>
+</nav>
+</header>
+<main id="main-content" tabindex="-1">
 
 <section class="card">
 <h2>Final Equipment Version</h2>
@@ -54,27 +63,29 @@ button{padding:10px 14px;border:0;border-radius:8px;background:#17202a;color:#ff
 </ul>
 </section>
 
-<section class="card">
+<section id="warmup" class="card">
 <h2>2. Warm-up • 10–12 min</h2>
 <div class="plain"><b>5 min treadmill / cross trainer</b><br>Easy → moderate pace. The goal is to raise body temperature, not fatigue yourself.</div>
 <div class="grid">
 
 <article class="exercise">
-  <div class="photo"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Arm_Circles/0.jpg" alt="Arm Circles form" loading="lazy"></div>
+  <div class="photo"><img src="assets/images/exercises/arm-circles.jpg" alt="Arm Circles form" loading="lazy"></div>
   <div class="body">
     <h3>Arm Circles</h3>
     <div class="meta">15 forward + 15 backward</div>
     <p><b>Focus:</b> Shoulder joint warm-up and blood flow</p>
     <details open><summary>How to perform</summary><ol><li>Stand tall with arms extended to the sides at shoulder height.</li><li>Make small forward circles, gradually increasing to medium size for 15 reps.</li><li>Reverse direction and perform 15 backward circles.</li><li>Keep core braced and avoid shrugging shoulders.</li></ol></details>
+    <a class="source" href="https://www.youtube.com/results?search_query=Arm+Circles+proper+form" target="_blank" rel="noopener">Open original reference</a>
   </div>
 </article>
 <article class="exercise">
-  <div class="photo"><img src="https://img.youtube.com/vi/dNilld58tks/hqdefault.jpg" alt="Shoulder-Blade Squeezes form" loading="lazy"></div>
+  <div class="photo"><img src="assets/images/exercises/shoulder-blade-squeezes.jpg" alt="Shoulder-Blade Squeezes form" loading="lazy"></div>
   <div class="body">
     <h3>Shoulder-Blade Squeezes</h3>
     <div class="meta">2 × 15</div>
     <p><b>Focus:</b> Scapular retraction and upper-back activation</p>
     <details open><summary>How to perform</summary><ol><li>Stand or sit tall with arms relaxed at your sides.</li><li>Pull your shoulder blades together as if pinching a pencil between them.</li><li>Hold the squeeze for 1–2 seconds.</li><li>Release with control. Repeat for 15 reps per set.</li></ol></details>
+    <a class="source" href="https://www.youtube.com/watch?v=dNilld58tks" target="_blank" rel="noopener">Open original reference</a>
   </div>
 </article>
 <article class="exercise">
@@ -85,7 +96,7 @@ button{padding:10px 14px;border:0;border-radius:8px;background:#17202a;color:#ff
     <p><b>Focus:</b> Shoulder mobility and scapular control</p>
     <details open><summary>How to perform</summary><ol><li>Stand with your back against the wall.</li><li>Keep your ribs down and move your arms slowly upward.</li><li>Use a comfortable range.</li><li>Do not force your hands or elbows against the wall.</li></ol></details>
     
-    <a class="source" href="https://www.inkin.com/blog/uploads/scapular_wall_slide.jpg" target="_blank" rel="noopener">Open original reference</a>
+    <a class="source" href="https://www.youtube.com/results?search_query=Wall+Slides+exercise+proper+form" target="_blank" rel="noopener">Open original reference</a>
   </div>
 </article>
 <article class="exercise">
@@ -96,32 +107,34 @@ button{padding:10px 14px;border:0;border-radius:8px;background:#17202a;color:#ff
     <p><b>Focus:</b> Serratus and shoulder-blade activation</p>
     <details open><summary>How to perform</summary><ol><li>Start in a high plank, or use knees-down.</li><li>Keep elbows straight.</li><li>Let the chest sink slightly as the shoulder blades come together.</li><li>Push the floor away and spread the shoulder blades.</li></ol></details>
     
-    <a class="source" href="https://sportkuznica.com/Articles/Trenirovki/Streetlifting-Razminka-pered-trenirovkoy-otjimaniy-na-brusyah/" target="_blank" rel="noopener">Open original reference</a>
+    <a class="source" href="https://www.youtube.com/results?search_query=Scapular+Push-ups+proper+form" target="_blank" rel="noopener">Open original reference</a>
   </div>
 </article>
 <article class="exercise">
-  <div class="photo"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Band_Pull_Apart/0.jpg" alt="Band Pull-Aparts form" loading="lazy"></div>
+  <div class="photo"><img src="assets/images/exercises/band-pull-apart.jpg" alt="Band Pull-Aparts form" loading="lazy"></div>
   <div class="body">
     <h3>Band Pull-Aparts</h3>
     <div class="meta">2 × 15</div>
     <p><b>Focus:</b> Rear delts, upper back and shoulder health</p>
     <details open><summary>How to perform</summary><ol><li>Hold a resistance band with both hands in front of your chest.</li><li>Keep arms straight and pull the band apart until it touches your chest.</li><li>Squeeze the shoulder blades together at the end.</li><li>Return slowly with control.</li></ol></details>
+    <a class="source" href="https://www.youtube.com/results?search_query=Band+Pull-Aparts+proper+form" target="_blank" rel="noopener">Open original reference</a>
   </div>
 </article>
 <article class="exercise">
-  <div class="photo"><img src="https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Wide-Grip_Lat_Pulldown/0.jpg" alt="Light Lat Pulldown form" loading="lazy"></div>
+  <div class="photo"><img src="assets/images/exercises/wide-grip-lat-pulldown.jpg" alt="Light Lat Pulldown form" loading="lazy"></div>
   <div class="body">
     <h3>Light Lat Pulldown</h3>
     <div class="meta">1 × 15</div>
     <p><b>Focus:</b> Lat activation and shoulder warm-up with light load</p>
     <details open><summary>How to perform</summary><ol><li>Set the lat pulldown machine to a very light weight (warm-up only).</li><li>Grip the bar slightly wider than shoulder-width.</li><li>Pull the bar to upper chest level, focusing on squeezing the lats.</li><li>Return with control. Keep reps smooth and controlled.</li></ol></details>
+    <a class="source" href="https://www.youtube.com/results?search_query=Light+Lat+Pulldown+proper+form" target="_blank" rel="noopener">Open original reference</a>
   </div>
 </article>
 </div>
 <div class="tip"><b>Warm-up visual check:</b> 6 movement references are included below: Arm Circles, Shoulder-Blade Squeezes, Wall Slides, Scapular Push-ups, Band Pull-Aparts and Light Lat Pulldown.<br><br><b>Warm-up order:</b> 5 min cardio → arm circles 15 forward + 15 backward → shoulder-blade squeezes 2×15 → wall slides 10 → scapular push-ups 2×10 → band pull-aparts 2×15 → light lat pulldown 1×15.</div>
 </section>
 
-<section class="card">
+<section id="workout" class="card">
 <h2>3. WOD • Quick Table</h2>
 <table>
 <tr><th>#</th><th>Exercise</th><th>Sets × Reps</th><th>Rest</th></tr>
@@ -153,7 +166,7 @@ button{padding:10px 14px;border:0;border-radius:8px;background:#17202a;color:#ff
     <p><b>Focus:</b> Lats, rhomboids, traps and rear delts</p>
     <details open><summary>How to perform</summary><ol><li>Set the bench around 30–45 degrees.</li><li>Place your chest firmly on the pad and feet on the floor.</li><li>Let the dumbbells hang below your shoulders.</li><li>Pull your elbows back and slightly toward your hips.</li><li>Pause briefly near the top without shrugging.</li><li>Lower under control to a full comfortable stretch.</li></ol></details>
     <div class="note">Keep your chest on the bench. Do not lift your torso to move the weight.</div>
-    <a class="source" href="https://www.skimble.com/exercises/50597-chest-supported-row-how-to-do-exercise" target="_blank" rel="noopener">Open original reference</a>
+    <a class="source" href="https://www.youtube.com/results?search_query=Chest+Supported+Dumbbell+Row+proper+form" target="_blank" rel="noopener">Open original reference</a>
   </div>
 </article>
 <article class="exercise">
@@ -164,7 +177,7 @@ button{padding:10px 14px;border:0;border-radius:8px;background:#17202a;color:#ff
     <p><b>Focus:</b> Core and spinal stability</p>
     <details open><summary>How to perform</summary><ol><li>Start on hands and knees, hands under shoulders and knees under hips.</li><li>Brace your abdomen gently.</li><li>Extend the opposite arm and leg.</li><li>Keep hips level and spine neutral.</li><li>Hold 2–3 seconds.</li><li>Return slowly and alternate sides.</li></ol></details>
     <div class="note">Keep this bodyweight for now. Your Friday plan already includes RDLs.</div>
-    <a class="source" href="https://getfitcraft.com/exercises/bird-dogs" target="_blank" rel="noopener">Open original reference</a>
+    <a class="source" href="https://www.youtube.com/results?search_query=Bird+Dog+exercise+proper+form" target="_blank" rel="noopener">Open original reference</a>
   </div>
 </article>
 
@@ -178,11 +191,11 @@ button{padding:10px 14px;border:0;border-radius:8px;background:#17202a;color:#ff
     <p><b>Focus:</b> Biceps</p>
     <details open><summary>How to perform</summary><ol><li>Stand tall with dumbbells at your sides and palms facing forward.</li><li>Keep upper arms close to your torso.</li><li>Curl by bending the elbows.</li><li>Squeeze near the top.</li><li>Lower slowly to full comfortable extension.</li></ol></details>
     
-    <a class="source" href="https://bod-blog-assets.prod.cd.beachbodyondemand.com/bod-blog/wp-content/uploads/2017/07/Bicep-Curl.jpg" target="_blank" rel="noopener">Open original reference</a>
+    <a class="source" href="https://www.youtube.com/results?search_query=Dumbbell+Curl+proper+form" target="_blank" rel="noopener">Open original reference</a>
   </div>
 </article>
 <article class="exercise">
-  <div class="photo"><img src="https://media.post.rvohealth.io/wp-content/uploads/2026/02/400x400_Biceps_Workouts_At_Home_Seated_Row_with_Resistance_Bands.gif" alt="Band Seated Row form" loading="lazy"></div>
+  <div class="photo"><img src="assets/images/exercises/band-seated-row.gif" alt="Band Seated Row form" loading="lazy"></div>
   <div class="body">
     <h3>Band Seated Row</h3>
     <div class="meta">2 × 12–15 • Rest 60 sec</div>
@@ -202,7 +215,7 @@ button{padding:10px 14px;border:0;border-radius:8px;background:#17202a;color:#ff
 <p>2 min easy → 6 min steady moderate → 2 min gradually easier.</p>
 </section>
 
-<section class="card">
+<section id="cooldown" class="card">
 <h2>6. Cool-down • 8–10 min</h2>
 <div class="grid">
 
@@ -214,7 +227,7 @@ button{padding:10px 14px;border:0;border-radius:8px;background:#17202a;color:#ff
     <p><b>Focus:</b> Chest and front shoulder</p>
     <details open><summary>How to perform</summary><ol><li>Place your forearm against a doorway.</li><li>Step forward gently.</li><li>Rotate your torso away until you feel a mild chest stretch.</li><li>Keep the shoulder relaxed.</li><li>Do not bounce.</li></ol></details>
     <div class="note">The exact doorway-chest photo from the earlier search was hosted on a site that blocked direct download, so it is intentionally not used here.</div>
-    <a class="source" href="https://www.inkin.com/blog/uploads/scapular_wall_slide.jpg" target="_blank" rel="noopener">Open original reference</a>
+    <a class="source" href="https://www.youtube.com/results?search_query=Doorway+Chest+Stretch+proper+form" target="_blank" rel="noopener">Open original reference</a>
   </div>
 </article>
 <article class="exercise">
@@ -225,7 +238,7 @@ button{padding:10px 14px;border:0;border-radius:8px;background:#17202a;color:#ff
     <p><b>Focus:</b> Rear shoulder</p>
     <details open><summary>How to perform</summary><ol><li>Bring one arm across your chest.</li><li>Use the opposite hand to gently draw it closer.</li><li>Keep the stretching shoulder relaxed.</li><li>Hold for 30 seconds and switch sides.</li></ol></details>
     <div class="note">The visual is a clear shoulder-mobility reference. Follow the written cross-body instructions.</div>
-    <a class="source" href="https://tarzanweb.jp/uploads/2018/10/03/20181003_743_p14_24-w1280.jpg" target="_blank" rel="noopener">Open original reference</a>
+    <a class="source" href="https://www.youtube.com/results?search_query=Cross+body+Shoulder+Stretch+proper+form" target="_blank" rel="noopener">Open original reference</a>
   </div>
 </article>
 <article class="exercise">
@@ -236,7 +249,7 @@ button{padding:10px 14px;border:0;border-radius:8px;background:#17202a;color:#ff
     <p><b>Focus:</b> Triceps</p>
     <details open><summary>How to perform</summary><ol><li>Raise one arm overhead.</li><li>Bend the elbow so the hand moves behind the head.</li><li>Gently guide the elbow downward.</li><li>Keep your torso upright and avoid forcing the shoulder.</li></ol></details>
     
-    <a class="source" href="https://tarzanweb.jp/uploads/2018/10/03/20181003_743_p14_24-w1280.jpg" target="_blank" rel="noopener">Open original reference</a>
+    <a class="source" href="https://www.youtube.com/results?search_query=Overhead+Triceps+Stretch+proper+form" target="_blank" rel="noopener">Open original reference</a>
   </div>
 </article>
 <article class="exercise">
@@ -247,7 +260,7 @@ button{padding:10px 14px;border:0;border-radius:8px;background:#17202a;color:#ff
     <p><b>Focus:</b> Upper trapezius and neck</p>
     <details open><summary>How to perform</summary><ol><li>Relax the shoulder on the stretching side.</li><li>Gently tilt your head toward the opposite side.</li><li>Use only light hand assistance if needed.</li><li>Hold without pulling hard.</li></ol></details>
     
-    <a class="source" href="https://cdn.shopify.com/s/files/1/0549/1572/7604/files/8_04400ad2-4bba-43b8-ae17-685f7ce0adbe_600x600.png?v=1720325538" target="_blank" rel="noopener">Open original reference</a>
+    <a class="source" href="https://www.youtube.com/results?search_query=Upper+Trap+Neck+Stretch+proper+form" target="_blank" rel="noopener">Open original reference</a>
   </div>
 </article>
 <article class="exercise">
@@ -258,7 +271,7 @@ button{padding:10px 14px;border:0;border-radius:8px;background:#17202a;color:#ff
     <p><b>Focus:</b> Back, lats and shoulders</p>
     <details open><summary>How to perform</summary><ol><li>Kneel on the floor.</li><li>Sit your hips toward your heels as comfortable.</li><li>Reach your arms forward.</li><li>Relax your shoulders and breathe slowly.</li></ol></details>
     
-    <a class="source" href="https://assets.kelasfitness.com/ghost/2025/06/child-s-pose-yoga.png" target="_blank" rel="noopener">Open original reference</a>
+    <a class="source" href="https://www.youtube.com/results?search_query=Child+Pose+stretch+proper+form" target="_blank" rel="noopener">Open original reference</a>
   </div>
 </article>
 </div>
@@ -291,6 +304,14 @@ button{padding:10px 14px;border:0;border-radius:8px;background:#17202a;color:#ff
 <p><b>Why 2–3 days?</b> Upper-body muscles generally need 48–72 hours to recover from a hard strength session. Spacing the sessions by 2–3 days keeps weekly volume high without overloading any single movement pattern.</p>
 <p><b>If you can only train twice per week:</b> Pair Pull + Lower Body on one day and Push + Lower Body on the other, or alternate Pull/Push every 3–4 days.</p>
 </section>
+<section id="progress" class="card">
+<h2>Progress</h2>
+<p>Once you reach the top of the rep range with clean form for two workouts, increase the load slightly.</p>
+<p>Record weights and reps after each session.</p>
+</section>
+</main>
 </div>
+<button id="scroll-to-top" type="button" aria-label="Scroll to top" hidden>Top</button>
+<script src="assets/workout-navigation.js" defer></script>
 </body>
 </html>

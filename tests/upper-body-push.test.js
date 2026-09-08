@@ -247,14 +247,34 @@ describe('upper_body_push.html', () => {
     });
   });
 
-  describe('no executable script tags', () => {
-    test('the document does not contain any <script> elements', () => {
-      expect(document.querySelectorAll('script').length).toBe(0);
+  describe('shared navigation and controls', () => {
+    test('loads shared navigation styles and behavior', () => {
+      expect(document.querySelector('link[href="assets/workout-navigation.css"]')).not.toBeNull();
+      expect(document.querySelector('script[src="assets/workout-navigation.js"]')).not.toBeNull();
+    });
+
+    test('renders the required navigation links, home button and section anchors', () => {
+      const links = Array.from(document.querySelectorAll('.nav a')).map((link) => [
+        link.textContent.trim(),
+        link.getAttribute('href'),
+      ]);
+      expect(links).toEqual([
+        ['Quick View', '#quick'],
+        ['Warm Up', '#warmup'],
+        ['Workout', '#workout'],
+        ['Cool Down', '#cooldown'],
+        ['Progress', '#progress'],
+      ]);
+      expect(document.querySelector('.home-button').getAttribute('href')).toBe('index.html');
+      ['quick', 'warmup', 'workout', 'cooldown', 'progress'].forEach((id) => {
+        expect(document.getElementById(id)).not.toBeNull();
+      });
+      expect(document.querySelector('#scroll-to-top')).not.toBeNull();
     });
   });
 
   describe('overall image inventory', () => {
-    test('embeds sixteen images total (eleven base64 + five external warm-up references)', () => {
+    test('keeps sixteen images total (eleven embedded + five local assets)', () => {
       const images = document.querySelectorAll('img');
       expect(images.length).toBe(16);
 
@@ -262,6 +282,14 @@ describe('upper_body_push.html', () => {
         img.getAttribute('src').startsWith('data:image/')
       );
       expect(base64Images.length).toBe(11);
+
+      const localImages = Array.from(images).filter((img) =>
+        img.getAttribute('src').startsWith('assets/images/exercises/')
+      );
+      expect(localImages.length).toBe(5);
+      localImages.forEach((img) => {
+        expect(fs.existsSync(path.join(ROOT_DIR, img.getAttribute('src')))).toBe(true);
+      });
     });
 
     // Boundary/regression check: a broken embed step could leave behind a
