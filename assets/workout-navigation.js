@@ -28,4 +28,19 @@
       img.parentNode.appendChild(fallback);
     }, { once: true });
   });
+
+  var navToggle = document.querySelector('.nav-toggle');
+  var nav = document.querySelector('.nav');
+  if (navToggle && nav) {
+    navToggle.addEventListener('click', function () {
+      var open = nav.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', String(open));
+    });
+    nav.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        nav.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
 })();
