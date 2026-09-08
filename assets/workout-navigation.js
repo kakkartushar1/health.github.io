@@ -39,8 +39,10 @@
     });
     nav.querySelectorAll('a').forEach(function (a) {
       a.addEventListener('click', function () {
+        var wasOpen = nav.classList.contains('open');
         nav.classList.remove('open');
         navToggle.setAttribute('aria-expanded', 'false');
+        if (wasOpen) navToggle.focus();
       });
     });
     document.addEventListener('click', function (e) {
