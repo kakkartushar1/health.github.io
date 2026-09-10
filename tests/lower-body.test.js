@@ -233,7 +233,7 @@ describe('Lower_Body.html', () => {
       const img = glutesCard.querySelector('img');
       expect(img).not.toBeNull();
       expect(img.getAttribute('src')).toBe(
-        'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Glute_Bridge/0.jpg'
+        'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Butt_Lift_Bridge/0.jpg'
       );
       expect(img.getAttribute('alt')).toBe('Bodyweight glute bridge exercise form reference');
     });
@@ -320,7 +320,7 @@ describe('Lower_Body.html', () => {
       const img = glutesCard.querySelector('img');
       expect(img).not.toBeNull();
       expect(img.getAttribute('src')).toBe(
-        'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Glute_Bridge/0.jpg'
+        'https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Butt_Lift_Bridge/0.jpg'
       );
       expect(img.getAttribute('alt')).toBe('Bodyweight glute bridge exercise form reference');
     });
