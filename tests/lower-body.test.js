@@ -269,7 +269,7 @@ describe('Lower_Body.html', () => {
 
       const img = butterflyCard.querySelector('img.exercise-photo');
       expect(img.getAttribute('src')).toBe(
-        'https://img.youtube.com/vi/UGEpQ1BRx-4/hqdefault.jpg'
+        'https://i0.wp.com/post.healthline.com/wp-content/uploads/2020/01/Female_Butterfly_Stretch_1296x728-header-1296x728.jpg?w=1155&h=1528'
       );
     });
 
@@ -360,7 +360,7 @@ describe('Lower_Body.html', () => {
 
       const img = butterflyCard.querySelector('img.exercise-photo');
       expect(img.getAttribute('src')).toBe(
-        'https://img.youtube.com/vi/UGEpQ1BRx-4/hqdefault.jpg'
+        'https://i0.wp.com/post.healthline.com/wp-content/uploads/2020/01/Female_Butterfly_Stretch_1296x728-header-1296x728.jpg?w=1155&h=1528'
       );
     });
 
@@ -373,6 +373,8 @@ describe('Lower_Body.html', () => {
         'stage.bodybuildingmealplan.com/wp-content/uploads/Romanian-Deadlift-vs-Stiff-Leg-Deadlift-Start.jpg',
         'cdn-images-1.readmedium.com/v2/resize:fit:800/1*Bc6f8E9cpeqs5lwYqdm11Q.png',
         'ghspineandlasercentre.com/uploads/exercise-for-recovery-crop/VKpQI-8oghr-2wdoB-rsN6w-0yPGj.jpg',
+        'img.youtube.com/vi/UGEpQ1BRx-4/hqdefault.jpg',
+        'commons.wikimedia.org/wiki/Special:Redirect/file/The_Calf_Stretch_110402-A-XD329-017.jpg',
       ];
 
       oldUrls.forEach((oldUrl) => {
