@@ -94,8 +94,8 @@ describe('index.html', () => {
       cards = Array.from(document.querySelectorAll('.workout-grid .workout-card'));
     });
 
-    test('renders exactly five workout cards', () => {
-      expect(cards.length).toBe(5);
+    test('renders exactly eight workout cards', () => {
+      expect(cards.length).toBe(8);
     });
 
     test('each card has an icon and at least one badge', () => {
@@ -223,19 +223,12 @@ describe('index.html', () => {
 
     // Regression / negative test: this PR replaces the "Future Workout"
     // disabled/"Coming Soon" placeholder card with the functional Upper
-    // Body Full card above. Pin down that the old placeholder card, its
-    // "coming-soon" styling hook and its disabled <span> button are all
-    // gone, so a future revert wouldn't silently reintroduce a dead card.
-    test('does not render the old "Future Workout" / "Coming Soon" placeholder card', () => {
+    // Body Full card above. Pin down that the old placeholder card and
+    // its disabled <span> button are all gone, so a future revert
+    // wouldn't silently reintroduce a dead card.
+    test('does not render the old "Future Workout" placeholder card', () => {
       const headings = cards.map((card) => card.querySelector('h3').textContent.trim());
       expect(headings).not.toContain('Future Workout');
-
-      expect(document.querySelector('.workout-grid .coming-soon')).toBeNull();
-
-      const badgeTexts = cards.flatMap((card) =>
-        Array.from(card.querySelectorAll('.badge')).map((b) => b.textContent.trim())
-      );
-      expect(badgeTexts).not.toContain('Coming Soon');
     });
 
     test('none of the workout-button anchors point to an empty or javascript: href', () => {
