@@ -117,7 +117,7 @@ describe('Upper_Body.html', () => {
       expect(titles).toEqual([
         'Lat Pulldown',
         'Chest-Supported Dumbbell Row',
-        'Band Seated Row',
+        'Seated Row',
         'Bird Dog',
         'Dumbbell Bench Press',
         'Pec Deck Fly',

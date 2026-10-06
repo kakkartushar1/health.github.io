@@ -98,7 +98,7 @@ describe('upper_body_pull.html', () => {
       expect(firstCells[3].textContent.trim()).toBe('60–90 sec');
 
       const lastCells = rows[rows.length - 1].querySelectorAll('td');
-      expect(lastCells[1].textContent.trim()).toBe('Band Seated Row');
+      expect(lastCells[1].textContent.trim()).toBe('Seated Row');
       expect(lastCells[2].textContent.trim()).toBe('2 × 12–15');
       expect(lastCells[3].textContent.trim()).toBe('60 sec');
     });
@@ -115,7 +115,7 @@ describe('upper_body_pull.html', () => {
         'Chest-Supported DB Row',
         'Bird Dog',
         'Dumbbell Curl',
-        'Band Seated Row',
+        'Seated Row',
       ]);
     });
   });
@@ -138,7 +138,7 @@ describe('upper_body_pull.html', () => {
         'Chest-Supported Dumbbell Row',
         'Bird Dog',
         'Dumbbell Curl',
-        'Band Seated Row',
+        'Seated Row',
       ]);
     });
 
