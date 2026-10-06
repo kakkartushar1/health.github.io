@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Yoga Routine – Core, Mobility &amp; Laughter Session</title>
+<link rel="stylesheet" href="assets/workout-navigation.css">
+<style>
+:root{--bg:#f4f6f8;--card:#fff;--ink:#15202b;--muted:#5c6773;--line:#dce2e8;--accent:#1f6feb}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.5}
+.wrap{max-width:1080px;margin:0 auto;padding:16px}
+.hero{background:var(--accent);color:#fff;padding:24px;border-radius:18px;margin-bottom:12px}
+.hero h1{font-size:28px;margin:0 0 4px}
+.hero .subtitle{font-size:16px;margin:0 0 4px;opacity:.92}
+.hero .note{font-size:13px;margin:0;opacity:.78}
+h2{font-size:22px;margin:24px 0 12px}
+h3{font-size:17px;margin:0 0 4px}
+.source-note{font-size:12px;color:var(--muted);margin:8px 0 16px;line-height:1.45}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:4px}
+.stat-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;text-align:center;box-shadow:0 1px 4px rgba(0,0,0,.04)}
+.stat-card .stat-value{font-size:24px;font-weight:700;color:var(--accent)}
+.stat-card .stat-label{font-size:13px;color:var(--muted);margin-top:2px}
+.video-ref{margin-bottom:20px}
+.video-btn{display:inline-flex;align-items:center;min-height:44px;padding:12px 20px;border-radius:10px;background:#111827;color:#fff;text-decoration:none;font-weight:700;font-size:14px;gap:6px}
+.video-btn:hover{background:#1f2937}
+.equipment-note{font-size:12px;color:var(--muted);margin:4px 0 24px;text-align:center}
+.exercise-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px}
+.exercise-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:0;box-shadow:0 1px 4px rgba(0,0,0,.04);display:flex;flex-direction:column;overflow:hidden}
+.exercise-card-top{display:flex;align-items:stretch}
+.exercise-visual{width:72px;min-height:72px;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0}
+.exercise-body{flex:1;padding:14px 14px 0 4px}
+.exercise-body h3{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.exercise-bottom{padding:0 14px 14px;margin-top:auto}
+.exercise-desc{font-size:13px;color:var(--muted);margin:6px 0 10px;line-height:1.45}
+.pill{display:inline-block;padding:2px 10px;border-radius:999px;font-size:11px;font-weight:600;line-height:1.7;white-space:nowrap}
+.pill-num{background:var(--accent);color:#fff}
+.pill-section{border:1px solid var(--line);color:var(--ink)}
+.pill-equip{background:#f0f4f8;color:var(--ink);font-size:11px}
+.pill-time{color:var(--muted);font-size:12px;font-weight:400}
+.badges{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.check-row{display:flex;align-items:center;gap:8px;margin-top:10px}
+.check-row label{font-size:13px;color:var(--muted);cursor:pointer;display:flex;align-items:center;gap:6px}
+.check-row input[type="checkbox"]{width:20px;height:20px;accent-color:var(--accent);cursor:pointer;margin:0}
+.scroll-region{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:18px;background:var(--card);box-shadow:0 1px 4px rgba(0,0,0,.04)}
+.follow-table{width:100%;border-collapse:collapse;font-size:14px;min-width:640px}
+.follow-table th,.follow-table td{padding:10px 12px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+.follow-table thead th{background:#f0f4f8;font-weight:700;position:sticky;top:0}
+.follow-table tbody tr:last-child td{border-bottom:0}
+.follow-table tbody tr:hover{background:#f8fafc}
+.progress-bar-wrap{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 1px 4px rgba(0,0,0,.04);overflow-x:auto}
+.timeline{position:relative;height:36px;border-radius:8px;background:#f0f4f8;min-width:600px}
+.timeline-seg{position:absolute;top:0;height:100%;border-right:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:600;color:var(--ink);overflow:hidden;white-space:nowrap;text-overflow:ellipsis;padding:0 4px}
+.timeline-seg:last-child{border-right:0}
+.timeline-labels{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:4px;min-width:600px}
+.reset-wrap{text-align:center;margin:24px 0}
+.reset-btn{padding:12px 22px;border:0;border-radius:999px;background:#dc2626;color:#fff;font:inherit;font-size:14px;font-weight:700;cursor:pointer;min-height:44px;min-width:44px}
+.reset-btn:hover{background:#b91c1c}
+.footer{text-align:center;padding:32px 16px;font-size:13px;color:var(--muted)}
+@media(max-width:650px){
+  .exercise-grid{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .hero h1{font-size:22px}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{transition:none!important;animation:none!important}
+}
+@media print{
+  .site-header .home-button,.nav-toggle,.nav,#scroll-to-top,.check-row,.reset-wrap{display:none!important}
+  body{background:#fff;color:#000}
+  .exercise-card,.stat-card,.scroll-region,.progress-bar-wrap{break-inside:avoid;box-shadow:none;border-color:#ccc}
+  .hero{background:#000;color:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .exercise-visual{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<div class="wrap">
+<header class="site-header">
+  <section class="hero">
+    <h1>Yoga Routine</h1>
+    <p class="subtitle">Core, Mobility &amp; Laughter Session</p>
+    <p class="note">~60 minutes • Thursday routine</p>
+  </section>
+  <a class="home-button" href="index.html">Home</a>
+  <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation">☰</button>
+  <nav class="nav" id="nav-menu" aria-label="Workout sections">
+    <a href="#preparation">Preparation</a>
+    <a href="#standing-movement">Standing Movement</a>
+    <a href="#bottle-resistance">Bottle Resistance</a>
+    <a href="#core">Core</a>
+    <a href="#mobility">Mobility</a>
+    <a href="#back">Back</a>
+    <a href="#laughter-relaxation">Laughter &amp; Relaxation</a>
+    <a href="#routine">Full Routine</a>
+    <a href="#follow-along">Follow-Along</a>
+  </nav>
+</header>
+
+<main id="main-content" tabindex="-1">
+
+<section class="video-ref" aria-labelledby="video-heading">
+  <h2 id="video-heading">Source Video</h2>
+  <a class="video-btn" href="https://www.youtube.com/watch?v=o22X4q3_6Lc&amp;list=PLKyh11otBA3E" target="_blank" rel="noopener" aria-label="Open yoga routine playlist on YouTube">▶ Open Yoga Playlist on YouTube</a>
+  <p class="source-note" style="margin-top:8px">Times are approximate. Exercise names are descriptive where a formal asana name could not be verified visually. Routine extracted from a ~60-minute video; no audio track was available during analysis.</p>
+</section>
+
+<div class="stats-grid">
+  <div class="stat-card"><div class="stat-value">~60 min</div><div class="stat-label">Duration</div></div>
+  <div class="stat-card"><div class="stat-value">38</div><div class="stat-label">Exercises</div></div>
+  <div class="stat-card"><div class="stat-value">Core + mobility</div><div class="stat-label">Focus</div></div>
+  <div class="stat-card"><div class="stat-value">Mat + bottles</div><div class="stat-label">Equipment</div></div>
+</div>
+<p class="equipment-note">Not every exercise requires every piece of equipment.</p>
+
+<section id="routine" aria-labelledby="routine-heading">
+  <h2 id="routine-heading">Full Routine</h2>
+  <div class="exercise-grid" id="exercise-cards"></div>
+</section>
+
+<section id="follow-along" aria-labelledby="follow-heading">
+  <h2 id="follow-heading">Compact Follow-Along</h2>
+  <div class="scroll-region" role="region" aria-label="Follow-along chart" tabindex="0">
+    <table class="follow-table" id="follow-table">
+      <thead><tr><th scope="col">#</th><th scope="col">Time</th><th scope="col">Duration</th><th scope="col">Exercise</th><th scope="col">Section</th><th scope="col">Equipment</th></tr></thead>
+      <tbody id="follow-body"></tbody>
+    </table>
+  </div>
+</section>
+
+<section id="progress" aria-labelledby="progress-heading">
+  <h2 id="progress-heading">Session Progress</h2>
+  <div class="progress-bar-wrap">
+    <div class="timeline" id="timeline" role="img" aria-label="Session timeline showing section durations from 04:30 to 60:00"></div>
+    <div class="timeline-labels" id="timeline-labels"></div>
+  </div>
+</section>
+
+<div class="reset-wrap">
+  <button class="reset-btn" type="button" id="reset-btn">Reset Progress</button>
+</div>
+
+</main>
+</div>
+
+<footer class="footer">Personal workout library • Thursday yoga routine</footer>
+
+<button id="scroll-to-top" hidden aria-label="Scroll to top">↑ Top</button>
+
+<script>
+(function(){
+'use strict';
+
+var exercises = [
+  { id:1, time:"04:30\u201307:30", name:"Breath-Hold Walking", desc:"Walking while holding the breath. The video labels this as the pre-session breath-hold walk.", section:"Preparation", equipment:[] },
+  { id:2, time:"07:30\u201310:30", name:"Seated Breathing & Centering", desc:"Seated breathing and centering, including hand-to-nose breathing.", section:"Preparation", equipment:["Mat"] },
+  { id:3, time:"10:30\u201312:00", name:"Standing Transition", desc:"Move from seated position to standing and prepare for the main session.", section:"Warm-up", equipment:[] },
+  { id:4, time:"12:00\u201312:45", name:"Side Steps with Arm Extension", desc:"Step side to side while extending the arms laterally.", section:"Standing Movement", equipment:[] },
+  { id:5, time:"12:45\u201313:45", name:"Hands-Behind-Head Lateral Movement", desc:"Keep the hands behind the head and perform repeated lateral torso movement.", section:"Standing Movement", equipment:[] },
+  { id:6, time:"13:45\u201314:30", name:"Standing Torso Rotations", desc:"Wide stance with repeated upper-body rotation and arm movement.", section:"Standing Movement", equipment:[] },
+  { id:7, time:"14:30\u201315:15", name:"Side Steps with Overhead Arms", desc:"Step laterally while sweeping the arms upward.", section:"Standing Movement", equipment:[] },
+  { id:8, time:"15:15\u201316:00", name:"Lunge with Overhead Reach", desc:"Step back into a lunge while raising the arms overhead.", section:"Standing Movement", equipment:[] },
+  { id:9, time:"16:00\u201317:30", name:"Alternating Knee Lifts", desc:"Alternate knee raises while standing.", section:"Standing Movement", equipment:[] },
+  { id:10, time:"17:30\u201318:30", name:"Supported Squat / Sit Movement", desc:"Repeated lowering and rising with a chair nearby for support.", section:"Standing Movement", equipment:["Chair"] },
+  { id:11, time:"18:30\u201320:00", name:"Wide-Stance Arm Punches / Pulls", desc:"Use a wide stance with repeated arm-driving movements.", section:"Standing Movement", equipment:[] },
+  { id:12, time:"20:00\u201321:15", name:"Overhead Arm Raises with Stepping", desc:"Raise the arms overhead while stepping or marching.", section:"Standing Movement", equipment:[] },
+  { id:13, time:"21:15\u201322:00", name:"Standing Lateral Bends", desc:"Bend the torso alternately from side to side.", section:"Standing Movement", equipment:[] },
+  { id:14, time:"22:00\u201323:00", name:"Bottle Side Bends", desc:"Hold one bottle and perform controlled lateral torso bends.", section:"Bottle Resistance", equipment:["Bottles"] },
+  { id:15, time:"23:00\u201324:00", name:"Bottle Overhead Side Reach", desc:"Raise the bottle overhead while performing a lateral reach or bend.", section:"Bottle Resistance", equipment:["Bottles"] },
+  { id:16, time:"24:00\u201325:15", name:"Bottle Arm Movements", desc:"Standing with bottles while performing controlled arm movements.", section:"Bottle Resistance", equipment:["Bottles"] },
+  { id:17, time:"25:15\u201326:15", name:"Forward Bend with Bottles", desc:"Hinge or bend toward the floor while holding the bottles, then return to standing.", section:"Bottle Resistance", equipment:["Bottles"] },
+  { id:18, time:"26:15\u201327:45", name:"Lunge with Overhead Bottle Reach", desc:"Perform repeated lunges combined with an overhead bottle movement.", section:"Bottle Resistance", equipment:["Bottles"] },
+  { id:19, time:"27:45\u201329:30", name:"Bottle Hinge / Forward Bend", desc:"Repeated forward bending while holding the bottles.", section:"Bottle Resistance", equipment:["Bottles"] },
+  { id:20, time:"29:30\u201330:00", name:"Floor Transition", desc:"Move from standing to lying on the mat.", section:"Floor Core", equipment:["Mat"] },
+  { id:21, time:"30:00\u201331:30", name:"Supine Straight-Leg Raises", desc:"Lie on the back and raise and lower the legs under control.", section:"Core", equipment:["Mat"] },
+  { id:22, time:"31:30\u201333:00", name:"Alternating Leg Raises", desc:"Move one leg while the other remains bent or grounded.", section:"Core", equipment:["Mat"] },
+  { id:23, time:"33:00\u201335:30", name:"Alternating Leg Extensions", desc:"Repeatedly extend and return the legs from the supine position.", section:"Core", equipment:["Mat"] },
+  { id:24, time:"35:30\u201337:00", name:"Knee-to-Chest Core Movement", desc:"Draw the knees toward the torso with abdominal engagement.", section:"Core", equipment:["Mat"] },
+  { id:25, time:"37:00\u201339:00", name:"Bicycle-Style Core Movement", desc:"Alternating leg movement combined with upper-body rotation.", section:"Core", equipment:["Mat"] },
+  { id:26, time:"39:00\u201340:00", name:"Supine Alternating Leg Movement", desc:"Alternate the legs while keeping the upper body on the mat.", section:"Core", equipment:["Mat"] },
+  { id:27, time:"40:00\u201343:30", name:"Supine Bottle-Weight Core Work", desc:"Hold bottles while performing controlled alternating leg movements.", section:"Core", equipment:["Mat","Bottles"] },
+  { id:28, time:"43:30\u201344:45", name:"Hip Bridge", desc:"Lift the pelvis from the floor while keeping the knees bent.", section:"Core", equipment:["Mat"] },
+  { id:29, time:"44:45\u201346:30", name:"Knees to Chest", desc:"Draw both knees toward the chest and perform the movement repeatedly or hold as shown.", section:"Core", equipment:["Mat"] },
+  { id:30, time:"46:30\u201348:45", name:"Supine Spinal Rotation", desc:"Move the bent knees toward the sides while keeping the upper body on the mat.", section:"Mobility", equipment:["Mat"] },
+  { id:31, time:"48:45\u201349:30", name:"Supine Rest", desc:"Lie flat and transition toward the prone section.", section:"Recovery", equipment:["Mat"] },
+  { id:32, time:"49:30\u201350:15", name:"Cobra-Style Back Extension", desc:"Lie prone and lift the chest using the arms.", section:"Back", equipment:["Mat"] },
+  { id:33, time:"50:15\u201351:00", name:"Prone Arm and Leg Extension", desc:"Extend the arms and legs away from the body while lying face down.", section:"Back", equipment:["Mat"] },
+  { id:34, time:"51:00\u201352:00", name:"Prone Bent-Knee Leg Lifts", desc:"Lift the lower legs upward while lying prone.", section:"Back", equipment:["Mat"] },
+  { id:35, time:"52:00\u201353:15", name:"Prone Alternating Leg Movement", desc:"Perform controlled alternating leg movements while remaining face down.", section:"Back", equipment:["Mat"] },
+  { id:36, time:"53:15\u201353:30", name:"Rest / Transition", desc:"Rest and transition to the closing section.", section:"Recovery", equipment:[] },
+  { id:37, time:"53:30\u201358:00", name:"Laughter Session", desc:"Group laughter combined with breathing and relaxation activity.", section:"Laughter & Relaxation", equipment:[] },
+  { id:38, time:"58:00\u201360:00", name:"Closing", desc:"Closing relaxation or message and end of the session.", section:"Laughter & Relaxation", equipment:[] }
+];
+
+var sectionColors = {
+  "Preparation": "#e0f2fe",
+  "Warm-up": "#fef3c7",
+  "Standing Movement": "#d1fae5",
+  "Bottle Resistance": "#fce7f3",
+  "Floor Core": "#ede9fe",
+  "Core": "#ede9fe",
+  "Mobility": "#ccfbf1",
+  "Recovery": "#f3f4f6",
+  "Back": "#fff7ed",
+  "Laughter & Relaxation": "#fef9c3"
+};
+
+var sectionEmojis = {
+  "Preparation": "\uD83E\uDDD8",
+  "Warm-up": "\uD83D\uDD04",
+  "Standing Movement": "\uD83D\uDEB6",
+  "Bottle Resistance": "\uD83C\uDFCB\uFE0F",
+  "Floor Core": "\uD83D\uDCAA",
+  "Core": "\uD83D\uDCAA",
+  "Mobility": "\uD83D\uDD04",
+  "Recovery": "\u23F8\uFE0F",
+  "Back": "\uD83E\uDEC1",
+  "Laughter & Relaxation": "\uD83D\uDE02"
+};
+
+function parseMinutes(timeStr) {
+  var parts = timeStr.split('\u2013');
+  if (parts.length < 2) return '0:00';
+  function toSec(t) {
+    var p = t.trim().split(':');
+    return parseInt(p[0], 10) * 60 + parseInt(p[1], 10);
+  }
+  var diff = toSec(parts[1]) - toSec(parts[0]);
+  var m = Math.floor(diff / 60);
+  var s = diff % 60;
+  return m + ':' + (s < 10 ? '0' : '') + s;
+}
+
+function esc(str) {
+  var d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
+}
+
+// Build exercise cards
+var cardsEl = document.getElementById('exercise-cards');
+var cardsHTML = '';
+for (var i = 0; i < exercises.length; i++) {
+  var ex = exercises[i];
+  var bg = sectionColors[ex.section] || '#f3f4f6';
+  var emoji = sectionEmojis[ex.section] || '';
+  var dur = parseMinutes(ex.time);
+  var equipHTML = '';
+  for (var j = 0; j < ex.equipment.length; j++) {
+    equipHTML += '<span class="pill pill-equip">' + esc(ex.equipment[j]) + '</span>';
+  }
+  cardsHTML +=
+    '<article class="exercise-card">' +
+      '<div class="exercise-card-top">' +
+        '<div class="exercise-visual" style="background:' + bg + '" aria-hidden="true">' + emoji + '</div>' +
+        '<div class="exercise-body">' +
+          '<h3><span class="pill pill-num">' + ex.id + '</span> ' + esc(ex.name) + '</h3>' +
+          '<span class="pill-time">' + esc(ex.time) + ' \u00B7 ' + dur + '</span>' +
+          '<div class="badges">' +
+            '<span class="pill pill-section" style="background:' + bg + '">' + esc(ex.section) + '</span>' +
+            equipHTML +
+          '</div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="exercise-bottom">' +
+        '<p class="exercise-desc">' + esc(ex.desc) + '</p>' +
+        '<div class="check-row">' +
+          '<label><input type="checkbox" data-id="' + ex.id + '" aria-label="Mark ' + esc(ex.name) + ' complete"> Done</label>' +
+        '</div>' +
+      '</div>' +
+    '</article>';
+}
+cardsEl.innerHTML = cardsHTML;
+
+// Build follow-along table
+var tbody = document.getElementById('follow-body');
+var rowsHTML = '';
+for (var i = 0; i < exercises.length; i++) {
+  var ex = exercises[i];
+  var dur = parseMinutes(ex.time);
+  rowsHTML +=
+    '<tr>' +
+      '<td>' + ex.id + '</td>' +
+      '<td>' + esc(ex.time) + '</td>' +
+      '<td>' + dur + '</td>' +
+      '<td>' + esc(ex.name) + '</td>' +
+      '<td>' + esc(ex.section) + '</td>' +
+      '<td>' + (ex.equipment.length ? esc(ex.equipment.join(', ')) : '\u2014') + '</td>' +
+    '</tr>';
+}
+tbody.innerHTML = rowsHTML;
+
+// Build timeline
+var timelineEl = document.getElementById('timeline');
+var labelsEl = document.getElementById('timeline-labels');
+var sessionStart = 4 * 60 + 30;
+var sessionEnd = 60 * 60;
+var totalSec = sessionEnd - sessionStart;
+
+var timelineRanges = [];
+for (var i = 0; i < exercises.length; i++) {
+  var sec = exercises[i].section;
+  var parts = exercises[i].time.split('\u2013');
+  function toS(t) { var p = t.trim().split(':'); return parseInt(p[0],10)*60 + parseInt(p[1],10); }
+  var start = toS(parts[0]);
+  var end = toS(parts[1]);
+  var previousRange = timelineRanges[timelineRanges.length - 1];
+  if (previousRange && previousRange.section === sec && previousRange.end === start) {
+    previousRange.end = end;
+  } else {
+    timelineRanges.push({ section: sec, start: start, end: end });
+  }
+}
+
+var segsHTML = '';
+for (var i = 0; i < timelineRanges.length; i++) {
+  var r = timelineRanges[i];
+  var sec = r.section;
+  var left = ((r.start - sessionStart) / totalSec * 100);
+  var width = ((r.end - r.start) / totalSec * 100);
+  var bg = sectionColors[sec] || '#f3f4f6';
+  var label = width > 6 ? sec : '';
+  segsHTML += '<div class="timeline-seg" style="left:' + left.toFixed(2) + '%;width:' + width.toFixed(2) + '%;background:' + bg + '" title="' + esc(sec) + '">' + esc(label) + '</div>';
+}
+timelineEl.innerHTML = segsHTML;
+labelsEl.innerHTML = '<span>04:30</span><span>15:00</span><span>30:00</span><span>45:00</span><span>60:00</span>';
+
+// Section anchor IDs
+var sectionAnchors = {
+  "Preparation":"preparation","Warm-up":"warm-up","Standing Movement":"standing-movement",
+  "Bottle Resistance":"bottle-resistance","Floor Core":"floor-core","Core":"core",
+  "Mobility":"mobility","Recovery":"recovery","Back":"back","Laughter & Relaxation":"laughter-relaxation"
+};
+var insertedAnchors = {};
+var allCards = cardsEl.querySelectorAll('.exercise-card');
+for (var i = 0; i < exercises.length; i++) {
+  var sec = exercises[i].section;
+  if (!insertedAnchors[sec] && sectionAnchors[sec]) {
+    allCards[i].id = sectionAnchors[sec];
+    insertedAnchors[sec] = true;
+  }
+}
+
+// Checkbox localStorage
+var LS_PREFIX = 'yoga-exercise-';
+var storageAvailable = true;
+try { localStorage.setItem('__test__','1'); localStorage.removeItem('__test__'); } catch(e) { storageAvailable = false; }
+
+var checkboxes = cardsEl.querySelectorAll('input[type="checkbox"]');
+for (var c = 0; c < checkboxes.length; c++) {
+  var cb = checkboxes[c];
+  if (storageAvailable) {
+    try {
+      var stored = localStorage.getItem(LS_PREFIX + cb.getAttribute('data-id'));
+      if (stored === 'true') cb.checked = true;
+    } catch(e) { storageAvailable = false; }
+  }
+  cb.addEventListener('change', function() {
+    try {
+      localStorage.setItem(LS_PREFIX + this.getAttribute('data-id'), String(this.checked));
+    } catch(e) { /* progress not persisted */ }
+  });
+}
+
+// Reset button
+document.getElementById('reset-btn').addEventListener('click', function() {
+  if (confirm('Reset all exercise progress for this yoga routine?')) {
+    for (var i = 0; i < exercises.length; i++) {
+      try { localStorage.removeItem(LS_PREFIX + exercises[i].id); } catch(e) { /* ignore */ }
+    }
+    var cbs = cardsEl.querySelectorAll('input[type="checkbox"]');
+    for (var j = 0; j < cbs.length; j++) cbs[j].checked = false;
+  }
+});
+})();
+</script>
+<script src="assets/workout-navigation.js"></script>
+</body>
+</html>
