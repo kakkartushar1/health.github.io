@@ -94,8 +94,8 @@ describe('index.html', () => {
       cards = Array.from(document.querySelectorAll('.workout-grid .workout-card'));
     });
 
-    test('renders exactly four workout cards', () => {
-      expect(cards.length).toBe(4);
+    test('renders exactly five workout cards', () => {
+      expect(cards.length).toBe(5);
     });
 
     test('each card has an icon and at least one badge', () => {
