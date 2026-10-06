@@ -298,27 +298,25 @@ var sessionStart = 4 * 60 + 30;
 var sessionEnd = 60 * 60;
 var totalSec = sessionEnd - sessionStart;
 
-var sectionOrder = [];
-var sectionRanges = {};
+var timelineRanges = [];
 for (var i = 0; i < exercises.length; i++) {
   var sec = exercises[i].section;
   var parts = exercises[i].time.split('\u2013');
   function toS(t) { var p = t.trim().split(':'); return parseInt(p[0],10)*60 + parseInt(p[1],10); }
   var start = toS(parts[0]);
   var end = toS(parts[1]);
-  if (!sectionRanges[sec]) {
-    sectionRanges[sec] = { start: start, end: end };
-    sectionOrder.push(sec);
+  var previousRange = timelineRanges[timelineRanges.length - 1];
+  if (previousRange && previousRange.section === sec && previousRange.end === start) {
+    previousRange.end = end;
   } else {
-    if (start < sectionRanges[sec].start) sectionRanges[sec].start = start;
-    if (end > sectionRanges[sec].end) sectionRanges[sec].end = end;
+    timelineRanges.push({ section: sec, start: start, end: end });
   }
 }
 
 var segsHTML = '';
-for (var i = 0; i < sectionOrder.length; i++) {
-  var sec = sectionOrder[i];
-  var r = sectionRanges[sec];
+for (var i = 0; i < timelineRanges.length; i++) {
+  var r = timelineRanges[i];
+  var sec = r.section;
   var left = ((r.start - sessionStart) / totalSec * 100);
   var width = ((r.end - r.start) / totalSec * 100);
   var bg = sectionColors[sec] || '#f3f4f6';
@@ -346,13 +344,22 @@ for (var i = 0; i < exercises.length; i++) {
 
 // Checkbox localStorage
 var LS_PREFIX = 'yoga-exercise-';
+var storageAvailable = true;
+try { localStorage.setItem('__test__','1'); localStorage.removeItem('__test__'); } catch(e) { storageAvailable = false; }
+
 var checkboxes = cardsEl.querySelectorAll('input[type="checkbox"]');
 for (var c = 0; c < checkboxes.length; c++) {
   var cb = checkboxes[c];
-  var stored = localStorage.getItem(LS_PREFIX + cb.getAttribute('data-id'));
-  if (stored === 'true') cb.checked = true;
+  if (storageAvailable) {
+    try {
+      var stored = localStorage.getItem(LS_PREFIX + cb.getAttribute('data-id'));
+      if (stored === 'true') cb.checked = true;
+    } catch(e) { storageAvailable = false; }
+  }
   cb.addEventListener('change', function() {
-    localStorage.setItem(LS_PREFIX + this.getAttribute('data-id'), String(this.checked));
+    try {
+      localStorage.setItem(LS_PREFIX + this.getAttribute('data-id'), String(this.checked));
+    } catch(e) { /* progress not persisted */ }
   });
 }
 
@@ -360,7 +367,7 @@ for (var c = 0; c < checkboxes.length; c++) {
 document.getElementById('reset-btn').addEventListener('click', function() {
   if (confirm('Reset all exercise progress for this yoga routine?')) {
     for (var i = 0; i < exercises.length; i++) {
-      localStorage.removeItem(LS_PREFIX + exercises[i].id);
+      try { localStorage.removeItem(LS_PREFIX + exercises[i].id); } catch(e) { /* ignore */ }
     }
     var cbs = cardsEl.querySelectorAll('input[type="checkbox"]');
     for (var j = 0; j < cbs.length; j++) cbs[j].checked = false;
