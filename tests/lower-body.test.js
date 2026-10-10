@@ -60,10 +60,11 @@ describe('Lower_Body.html', () => {
       { href: '#warmup', label: 'Warm Up' },
       { href: '#workout', label: 'Workout' },
       { href: '#cooldown', label: 'Cool Down' },
+      { href: '#relaxation', label: 'Relaxation' },
       { href: '#progress', label: 'Progress' },
     ];
 
-    test('renders exactly five nav links with the expected labels/targets', () => {
+    test('renders exactly six nav links with the expected labels/targets', () => {
       const links = Array.from(document.querySelectorAll('nav.nav > a'));
       expect(links.length).toBe(EXPECTED_LINKS.length);
 
@@ -93,6 +94,7 @@ describe('Lower_Body.html', () => {
         '#warmup': true,
         '#workout': true,
         '#cooldown': true,
+        '#relaxation': true,
         '#progress': true,
       });
     });
@@ -292,10 +294,10 @@ describe('Lower_Body.html', () => {
   });
 
   describe('image count sanity check', () => {
-    test('total image count matches warm-up + exercises + cooldown images', () => {
-      // 7 warm-up + 7 exercises + 6 cooldown photos + 1 cooldown gif = 21
+    test('total image count matches warm-up + exercises + cooldown + savasana images', () => {
+      // 7 warm-up + 7 exercises + 6 cooldown photos + 1 cooldown gif + 1 savasana photo = 22
       const images = document.querySelectorAll('img');
-      expect(images.length).toBe(21);
+      expect(images.length).toBe(22);
     });
 
     test('every <img> in the document declares loading="lazy"', () => {
@@ -303,6 +305,47 @@ describe('Lower_Body.html', () => {
       images.forEach((img) => {
         expect(img.getAttribute('loading')).toBe('lazy');
       });
+    });
+  });
+
+  describe('savasana relaxation section', () => {
+    let section;
+
+    beforeAll(() => {
+      const relaxHeading = Array.from(document.querySelectorAll('h2.section')).find((h) =>
+        h.textContent.trim() === 'Relaxation'
+      );
+      expect(relaxHeading).not.toBeUndefined();
+      section = relaxHeading.closest('section');
+    });
+
+    test('renders the two-minute savasana (Corpse Pose) exercise card after the stretches', () => {
+      const card = section.querySelector('.cool-card');
+      expect(card).not.toBeNull();
+      expect(card.querySelector('h3').textContent.trim()).toBe('Savasana (Corpse Pose)');
+      expect(card.querySelector('b').textContent.trim()).toBe('2 min');
+    });
+
+    test('the savasana card includes a form-reference image with descriptive alt text', () => {
+      const img = section.querySelector('.cool-card img');
+      expect(img).not.toBeNull();
+      expect(img.getAttribute('src')).toBe('https://commons.wikimedia.org/wiki/Special:Redirect/file/Shavasana.jpg');
+      expect(img.getAttribute('alt')).toBe('Savasana Corpse Pose form reference');
+    });
+
+    test('includes a freely-licensed calming background audio track with a source disclosure', () => {
+      const audio = section.querySelector('audio#savasana-music');
+      expect(audio).not.toBeNull();
+      expect(audio.getAttribute('aria-label')).toMatch(/calming ambient/i);
+
+      const source = audio.querySelector('source');
+      expect(source.getAttribute('src')).toBe(
+        'https://archive.org/download/SleepMeditationCalming/10%20min%20meditation%20music.mp3'
+      );
+      expect(source.getAttribute('type')).toBe('audio/mpeg');
+
+      expect(section.textContent).toMatch(/Internet Archive/);
+      expect(section.textContent).toMatch(/freely licensed/i);
     });
   });
 

@@ -223,10 +223,51 @@ describe('upper_body_pull.html', () => {
     });
   });
 
+  describe('savasana relaxation section', () => {
+    let section;
+
+    beforeAll(() => {
+      const relaxHeading = Array.from(document.querySelectorAll('h2')).find((h) =>
+        h.textContent.startsWith('7. Savasana')
+      );
+      expect(relaxHeading).not.toBeUndefined();
+      section = relaxHeading.closest('section');
+    });
+
+    test('renders the two-minute savasana (Corpse Pose) exercise card after the stretches', () => {
+      const card = section.querySelector('.exercise');
+      expect(card).not.toBeNull();
+      expect(card.querySelector('h3').textContent.trim()).toBe('Savasana (Corpse Pose)');
+      expect(card.querySelector('.meta').textContent.trim()).toBe('2 min');
+    });
+
+    test('the savasana card includes a form-reference image with descriptive alt text', () => {
+      const img = section.querySelector('.exercise .photo img');
+      expect(img).not.toBeNull();
+      expect(img.getAttribute('src')).toBe('https://commons.wikimedia.org/wiki/Special:Redirect/file/Shavasana.jpg');
+      expect(img.getAttribute('alt')).toBe('Savasana Corpse Pose form reference');
+    });
+
+    test('includes a freely-licensed calming background audio track with a source disclosure', () => {
+      const audio = section.querySelector('audio#savasana-music');
+      expect(audio).not.toBeNull();
+      expect(audio.getAttribute('aria-label')).toMatch(/calming ambient/i);
+
+      const source = audio.querySelector('source');
+      expect(source.getAttribute('src')).toBe(
+        'https://archive.org/download/SleepMeditationCalming/10%20min%20meditation%20music.mp3'
+      );
+      expect(source.getAttribute('type')).toBe('audio/mpeg');
+
+      expect(section.textContent).toMatch(/Internet Archive/);
+      expect(section.textContent).toMatch(/freely licensed/i);
+    });
+  });
+
   describe('exercise name uniqueness (data integrity)', () => {
-    test('all sixteen exercise names across the page are unique', () => {
+    test('all seventeen exercise names across the page are unique', () => {
       const names = Array.from(document.querySelectorAll('h3')).map((h) => h.textContent.trim());
-      expect(names.length).toBe(16);
+      expect(names.length).toBe(17);
       expect(new Set(names).size).toBe(names.length);
     });
   });
@@ -255,10 +296,11 @@ describe('upper_body_pull.html', () => {
         ['Warm Up', '#warmup'],
         ['Workout', '#workout'],
         ['Cool Down', '#cooldown'],
+        ['Relaxation', '#relaxation'],
         ['Progress', '#progress'],
       ]);
       expect(document.querySelector('.home-button').getAttribute('href')).toBe('index.html');
-      ['quick', 'warmup', 'workout', 'cooldown', 'progress'].forEach((id) => {
+      ['quick', 'warmup', 'workout', 'cooldown', 'relaxation', 'progress'].forEach((id) => {
         expect(document.getElementById(id)).not.toBeNull();
       });
       expect(document.querySelector('#scroll-to-top')).not.toBeNull();
@@ -266,9 +308,9 @@ describe('upper_body_pull.html', () => {
   });
 
   describe('overall image inventory', () => {
-    test('keeps sixteen images total (eleven embedded + five local assets)', () => {
+    test('keeps seventeen images total (eleven embedded + five local assets + one savasana reference)', () => {
       const images = document.querySelectorAll('img');
-      expect(images.length).toBe(16);
+      expect(images.length).toBe(17);
 
       const base64Images = Array.from(images).filter((img) =>
         img.getAttribute('src').startsWith('data:image/')
