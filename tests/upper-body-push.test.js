@@ -255,7 +255,7 @@ describe('upper_body_push.html', () => {
       expect(img.getAttribute('alt')).toBe('Savasana Corpse Pose form reference');
     });
 
-    test('includes a freely-licensed calming background audio track with a source disclosure', () => {
+    test('includes optional calming background audio with native controls and a source disclosure', () => {
       const audio = section.querySelector('audio#savasana-music');
       expect(audio).not.toBeNull();
       expect(audio.getAttribute('aria-label')).toMatch(/calming ambient/i);
@@ -267,7 +267,11 @@ describe('upper_body_push.html', () => {
       expect(source.getAttribute('type')).toBe('audio/mpeg');
 
       expect(section.textContent).toMatch(/Internet Archive/);
-      expect(section.textContent).toMatch(/freely licensed/i);
+      expect(section.textContent).toMatch(/Press Play/);
+      expect(section.textContent).not.toMatch(/automatically|Creative Commons|copyright claim|freely licensed/i);
+      expect(audio.hasAttribute('controls')).toBe(true);
+      expect(audio.hasAttribute('autoplay')).toBe(false);
+      expect(section.querySelector('a[href="https://archive.org/details/SleepMeditationCalming"]')).not.toBeNull();
     });
   });
 
