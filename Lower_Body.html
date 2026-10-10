@@ -38,6 +38,7 @@ p{margin:7px 0} ol{padding-left:22px} li{margin:7px 0}
 .warm-media img{width:100%;height:180px;object-fit:contain;border-radius:10px;background:#f7f8fa}
 .warm-media .exercise-gif,.cool-card .exercise-gif{height:140px;margin-top:6px}
 .cool-card>div:first-child{overflow:hidden}
+audio{width:100%;max-width:460px;margin:10px 0;border:1px solid var(--line);border-radius:12px;background:#fafbfc}
 .section-title{margin:22px 2px 8px;font-size:23px}
 .table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden}
 .table th,.table td{padding:9px;border-bottom:1px solid var(--line);text-align:left;font-size:13px}
@@ -71,7 +72,7 @@ table caption{text-align:left;font-weight:800;padding:10px 0 7px}
   <a class="home-button" href="index.html">Home</a>
   <button class="nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Toggle navigation">☰</button>
   <nav class="nav" id="nav-menu" aria-label="Workout sections">
-  <a href="#quick">Quick View</a><a href="#warmup">Warm Up</a><a href="#workout">Workout</a><a href="#cooldown">Cool Down</a><a href="#progress">Progress</a>
+  <a href="#quick">Quick View</a><a href="#warmup">Warm Up</a><a href="#workout">Workout</a><a href="#cooldown">Cool Down</a><a href="#relaxation">Relaxation</a><a href="#progress">Progress</a>
   </nav>
 </header>
 <main id="main-content" tabindex="-1">
@@ -216,10 +217,23 @@ table caption{text-align:left;font-weight:800;padding:10px 0 7px}
     </div>
     <div class="cool-card">
       <div><img class="exercise-photo" src="https://i0.wp.com/post.healthline.com/wp-content/uploads/2020/01/Female_Butterfly_Stretch_1296x728-header-1296x728.jpg?w=1155&h=1528" alt="Butterfly stretch exercise form reference" loading="lazy"></div>
-      <div><h3>Butterfly stretch</h3><b>30–45 sec</b><p>Sit tall, soles together, knees relaxed outward. Do not force them down.</p><p><strong>Feel:</strong> Inner thighs/groin.</p></div>
+<div><h3>Butterfly stretch</h3><b>30–45 sec</b><p>Sit tall, soles together, knees relaxed outward. Do not force them down.</p><p><strong>Feel:</strong> Inner thighs/groin.</p></div>
     </div>
-</section>
-<section id="progress" aria-labelledby="progress-title"><h2 id="progress-title" class="section">Progress</h2>
+  </section>
+  <section id="relaxation" aria-labelledby="relaxation-title">
+    <h2 id="relaxation-title" class="section">Relaxation</h2>
+    <p>Finish with a single two-minute Savasana (Corpse Pose). Lie on your back, relax your body, and breathe slowly.</p>
+    <div class="cool-card">
+      <div><img class="exercise-photo" src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Shavasana.jpg" alt="Savasana Corpse Pose form reference" loading="lazy"></div>
+      <div><h3>Savasana (Corpse Pose)</h3><b>2 min</b><p>Lie flat on your back with legs comfortable apart and arms alongside your body, palms up. Close your eyes, release every muscle from your feet upward, and breathe slowly and smoothly. Hold the full two minutes without moving. Do not fall asleep.</p><p><strong>Feel:</strong> Full-body recovery and a calm nervous system.</p></div>
+    </div>
+    <div class="cool-card">
+      <div><span class="tag">RELAXATION</span><h3>Calming background music</h3><b>On-demand</b><p>A gentle, wordless ambient track is available during the relaxation. Playback is optional. Press Play in the audio controls to start the track.</p></div>
+      <div><audio id="savasana-music" controls preload="none" aria-label="Calming ambient background music for Savasana"><source src="https://archive.org/download/SleepMeditationCalming/10%20min%20meditation%20music.mp3" type="audio/mpeg">Your browser does not support the audio element.</audio><p class="media-label">Music: "10 min meditation music" — available on Internet Archive. <a href="https://archive.org/details/SleepMeditationCalming" target="_blank" rel="noopener">Source page</a></p></div>
+    </div>
+    <p class="media-label"><b>Exit safely:</b> When the two minutes are up, keep your eyes closed, slowly roll onto your right side, rest a moment, then press yourself up to seated. Take a few slow breaths before you gently open your eyes.</p>
+  </section>
+  <section id="progress" aria-labelledby="progress-title"><h2 id="progress-title" class="section">Progress</h2>
 <table><caption>Starting weights and progression guidance</caption><thead><tr><th scope="col">Exercise</th><th scope="col">Starting point</th><th scope="col">Progress</th></tr></thead><tbody>
 <tr><td>Squat</td><td>20 kg bar or lighter</td><td>+2.5–5 kg after 2 clean sessions</td></tr>
 <tr><td>RDL</td><td>15–20 kg bar or 7.5–10 kg/hand</td><td>Small increases after stable form</td></tr>
